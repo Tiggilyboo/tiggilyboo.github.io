@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Snippet on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/snippet/</link>
+    <description>Recent content in Snippet on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 31 Mar 2016 11:35:00 -0500</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/snippet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Handy Linux Bash Snippets</title>
+      <link>http://simonwillshire.com/blog/handy-linux-snippets/</link>
+      <pubDate>Thu, 31 Mar 2016 11:35:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/handy-linux-snippets/</guid>
+      <description>Handy Linux Bash Snippets Always display nautilus (file browser) path (Usually triggered with Ctrl-L) $ gsettings set org.gnome.nautilus.preferences always-use-location-entry true Show an exported/external drives (For NFS) within a specified domain $ showmount -e &amp;lt;ip/host&amp;gt; Check if your kernel can run Docker properly (Handy for ARM boards) $ curl -L https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin /path/to/.config </description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Introduction to a library I&#39;ve written in golang. Explains what the project&#39;s all about, why I wrote it, and how to use it!">
+
+    <title>WAPIQ: Web API Query Language</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../">Home</a>
+          <a href="../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../music">Music</a>
+          <a href="../../contact">Contact</a>
+          <a href="../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/scala.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/brainfuck.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/yaml.min.js"></script>
+<script type="text/javascript">
+  hljs.registerLanguage("wapiq",function(a){var b=a.C("#","$");return{cI:!0,i:/[\[\] {}#]/,c:[{bK:"API GET POST MAP FOR WHERE",e:/;/,eW:!0,l:/[\w\.]+/,k:{keyword:"/ API GET POST MAP FOR WHERE",literal:"args path type head query args"},c:[{cN:"attr",b:'"',e:'"',c:[a.BE,{b:"\\\\."}]},{cN:"string",b:"`",e:"`",c:[a.BE,{b:"\\\\."}]},a.CNM,a.CBCM,b]},{cN:"type",b:'"',e:'"',c:[a.BE,{b:"\\\\."}]},{bK:"/",cN:"attr",b:".",e:"FOR",c:[a.BE,{b:"\\\\."}]},{cN:"string",b:"`",e:"`",c:[a.BE,{b:"\\\\."}]},a.CBCM,b]}});
+</script>
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>WAPIQ: Web API Query Language</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Feb 25, 2017
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../tags/go">Go</a>&nbsp;
+        
+          <a href="../../tags/api">API</a>&nbsp;
+        
+          <a href="../../tags/wapiq">WAPIQ</a>&nbsp;
+        
+          <a href="../../tags/parser">Parser</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+       
+    </div>
+
+    <article>
+            <h3 id="a-hrefhttpsgithubcomtiggilyboowapiqspan-classfa-fa-githubspan-open-sourced-on-githuba"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> Open Sourced On Github<!-- raw HTML omitted --></h3>
+<h3 id="introduction">Introduction</h3>
+<p>After working on several project involving frequent web API interactions, including: response parsing and request assembling, you could say I&rsquo;ve had enough of it&hellip; So I wrote a library/query language in Golang which attempts to shorten the amount of time to map arbitrary JSON responses and setting up web API request behaviours.</p>
+<h4 id="what-does-it-look-like">What does it look like?</h4>
+<p>I went for something of a hybrid between a query language like SQL, and that of a configuration or declarative format like JSON. This allows scoping dynamic naming without taking up too much space: we want something succinct enough, reusable, and easily maintainable if the API&rsquo;s response changes in the future.</p>
+<h3 id="setup">Setup</h3>
+<p>WAPIQ consists of several types of command keywords:</p>
+<ul>
+<li><code>API</code> configures API endpoints, configured once before running queries off of.</li>
+<li><code>GET</code> or <code>POST</code> configures HTTP requests from an API, specify query parameters, head, body, relative path and all that good stuff.</li>
+<li><code>MAP</code> configures how to output the data from a <code>GET</code> or <code>POST</code> request.</li>
+<li><code>/&lt;action&gt;</code> can be run separately after the above commands have been loaded. Queries the WAPI, returns the specified <code>MAP</code> response according to some <code>WHERE</code> conditions.</li>
+</ul>
+<h3 id="usage-by-example">Usage By Example</h3>
+<p>Below goes through a quick Google Places API example, more examples can be found in the <a href="https://github.com/Tiggilyboo/wapiq/tree/master/examples">GitHub repository</a>.</p>
+<h4 id="configuration">Configuration</h4>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq"># Create new API configuration to interact with Google Places
+&#34;GooglePlaces&#34; API {
+  path `https://maps.googleapis.com/maps/api/place/`
+  args {
+    &#34;key&#34; `YOUR_API_KEY`
+  }
+};
+</code></pre><p>So, the above WAPIQ snippet declares a new API called <code>GooglePlaces</code>, with a base path, and a argument store for any later requests that use this API (more on this later).
+Also, notice that <code>#</code> is our full-line comment character.</p>
+<p><strong>Example Request Configuration</strong></p>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq"># Create a new GET http request
+&#34;search&#34; GET {
+  path `nearbysearch/json`
+  type `json`
+  query [
+    `key`
+    `location`
+    `radius`
+    `types`
+    `name`
+  ]
+};
+</code></pre><p>Similar in syntax to the previous example; this snippet creates a new HTTP GET request called <code>search</code>. It has a path which gets appended to the API path, sets the expected return type, and the next bit declares possible <code>query</code> parameters that can be added to the URL for any future <code>search</code> request made.</p>
+<p>Now that we have set up a very basic API and action for it (Also: Notice how each request configuration does not explicitly reference the API, so we could use it on multiple APIs if you wanted to).
+So, we want to <code>MAP</code> our API requests to a format of our liking. To do this we use the <code>MAP</code> configuration.</p>
+<p><strong>Example Map Configuration</strong></p>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq"># Create a new MAP between Place and our search request
+&#34;Place&#34; MAP &#34;GooglePlaces&#34; {
+  &#34;search&#34; {
+    &#34;id&#34;        `results.place_id`
+    &#34;name&#34;      `results.name`
+    &#34;types&#34;     `results.types`
+    &#34;location&#34;  `results.geometry.location`
+    &#34;address&#34;   `results.vicinity`
+  }
+};
+</code></pre><p>Right, so this is where it gets interesting: This creates a new response called <code>Place</code> with our previously created <code>GooglePlaces</code> API. Within this scope, we reference our declared <code>search</code> GET request. <code>Place</code> returns 5 fields: id, name, types, location, and address. If we were to map another response that still fills <code>search</code> we can add another scoped action within our MAP block. But for now, we will just be mapping <code>search</code> fields with JSON paths.</p>
+<p><strong>JSON Paths?</strong>
+Let&rsquo;s use the below as an example:</p>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq">&#34;location&#34; `results.geometry.location`
+</code></pre><p>Alright, so in our standard Google Places API response, we expect a JSON response that looks similar to this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;results&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;geometry&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;location&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;lat&#34;</span>: <span style="color:#e6db74">&#34;some_float&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;lon&#34;</span>: <span style="color:#e6db74">&#34;some_float&#34;</span>,
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Our JSON path string will find all objects satisfying any object in <code>results</code>, in each result, a <code>geometry</code> object, in each geometry, a <code>location</code>, and finally in each location a <code>lat</code> and <code>lon</code> value. - Quite powerful and easy to change in the future if the API response changes in the future.</p>
+<p><strong>Handling JSON Array elements using @ Expressions</strong></p>
+<p>Some APIs use arrays with an expected set of information (without naming the key of the value in the pair). In order to handle these responses, WAPIQ uses the <code>@</code> character when specifying the index in the array. Here is an example that is used when handling responses from the Bitfinex exchange API (See more in the giy repo at <code>examples/Bitfinex.wapiq</code>):</p>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq">...
+&#34;Trade&#34; MAP &#34;Bitfinex&#34; {
+  &#34;trades&#34; {
+    &#34;Id&#34;              @0,0
+    &#34;Mts&#34;             @0,1
+    &#34;Amount&#34;          @0,2
+    &#34;Price&#34;           @0,3
+  }
+  &#34;funding&#34; {
+    &#34;Id&#34;              @0,0
+    &#34;Mts&#34;             @0,1
+    &#34;Amount&#34;          @0,2
+    &#34;Rate&#34;            @0,3
+    &#34;Period&#34;          @0,4
+  }
+};
+</code></pre><p>In the above example, <code>@0,0</code> is used to read a json value from a response like this one, where &lt;&gt; are used as placeholders to identify each embedded array indexes (if it was <code>@0</code> we take the first object in the array, each concecutive <code>,</code> between values gives the next index as the child). Here is an example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  [
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;ID&gt;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;MTS&gt;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;AMOUNT&gt;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;PRICE&gt;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span></code></pre></div><p>The first <code>@0</code> specifies the first embedded array object, <code>[[&lt;here&gt;],...]</code>, and the second identifies the first element (at index 0) inside that array.</p>
+<p>If we wanted to just read the first element in an array, we just use <code>@0</code>, and <code>@1</code> is the next element, etc.</p>
+<p><strong>File Includes</strong></p>
+<p>So let&rsquo;s say you&rsquo;re implementing a particularily intricate API using WAPIQ, but you are struggling with the separation of concerns of each script. For example, you are implementing a public or common portion of the API, and want to separate the authentication endpoints. In order to handle this, you can use include statements using a preceding <code>^</code> character followed by the filename (excluding the <code>.wapiq</code> filename extension).</p>
+<p>As an example, the Bitfinex example is split into Bitfinex.wapiq and Bitfinex_Auth.wapiq:</p>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq"># Include common API from Bitfinex.wapiq
+^Bitfinex
+
+&#34;wallets&#34; POST {
+  path &#34;auth/wallets&#34;
+  head [
+    `bfx-apikey`
+    `bfx-apisecret`
+    `bfx-nonce`
+  ]
+};
+</code></pre><p>At the moment WAPIQ does not support inheritance of objects (potential in the future), but this at least allows file separation.</p>
+<h3 id="querying">Querying</h3>
+<p>On to the good stuff, now that we&rsquo;ve set up a WAPIQ configuration, let&rsquo;s query and return some results!</p>
+<pre tabindex="0"><code class="language-wapiq" data-lang="wapiq">/search FOR Place WHERE
+  name `cruise`
+  location `-33.8670,151.1957`
+  radius `500`
+  types `food`
+;
+</code></pre><p>WAPIQ resembles SQL a lot here, we precede our query with a <code>/</code>, and we want to return a response <code>FOR</code> our mapped <code>Place</code> , under the conditions outlined after the <code>WHERE</code> keyword. In this case, we&rsquo;re looking for a cruise near the supplied lat and lon location with 500km as our radius&hellip; Oh and something that offers food.</p>
+<p>The <code>WHERE</code> clause is optional - if no arguments are given the request sends with default arguments given in the associated API args (if any are given). In this case a query parameter named <code>key</code> was declared in our <code>GooglePlaces</code> example. Alternatively, we could override the <code>key</code> argument with a different value if you so choose.</p>
+<p>Behind the scenes, this fires off a request to:</p>
+<blockquote>
+<p><a href="https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCZmDlZXIlhlkDbHzAfffvWGWQa1LliZvE&amp;location=-33.8670%2C151.1957&amp;name=cruise&amp;radius=500&amp;types=food">https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCZmDlZXIlhlkDbHzAfffvWGWQa1LliZvE&amp;location=-33.8670%2C151.1957&amp;name=cruise&amp;radius=500&amp;types=food</a></p>
+</blockquote>
+<p>Which, depending on if you invoked from the Go wrapper or CLI will resolve to the following JSON or go struct:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{  
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;0&#34;</span>:[  
+</span></span><span style="display:flex;"><span>      {  
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">&#34;address&#34;</span>:<span style="color:#e6db74">&#34;32 The Promenade, King Street Wharf 5, Sydney&#34;</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">&#34;id&#34;</span>:<span style="color:#e6db74">&#34;ChIJrTLr-GyuEmsRBfy61i59si0&#34;</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">&#34;location&#34;</span>:{  
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;lat&#34;</span>:<span style="color:#ae81ff">-33.867591</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;lng&#34;</span>:<span style="color:#ae81ff">151.201196</span>
+</span></span><span style="display:flex;"><span>         },
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">&#34;name&#34;</span>:<span style="color:#e6db74">&#34;Australian Cruise Group&#34;</span>,
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">&#34;types&#34;</span>:[  
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;travel_agency&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;restaurant&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;food&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;point_of_interest&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;establishment&#34;</span>
+</span></span><span style="display:flex;"><span>         ]
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {  
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>   ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To sum up, that&rsquo;s the initial version of the library so far, you can access WAPIQ through a CLI, load your configurations through <code>*.wapiq</code> files, or execute and query through Golang using the WAPIQ library.</p>
+<h4 id="cli">CLI</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>./wapiq -f some/configuration.wapiq -q<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/search FOR Something WHERE conditions `plausible`;&#34;</span>
+</span></span></code></pre></div><ul>
+<li><code>-q</code>: Run a query directly within the CLI.</li>
+<li><code>-f</code>: Load and execute an external wapiq file.</li>
+</ul>
+<h4 id="go-wrapper">Go Wrapper</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;github.com/Tiggilyboo/wapiq&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">wapiq</span>.<span style="color:#a6e22e">WAPIQ</span>{}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">w</span> = <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">New</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Load</span>(<span style="color:#e6db74">&#34;../examples/GooglePlaces.wapiq&#34;</span>, <span style="color:#66d9ef">false</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// r is a map[string]interface{} and can be casted directly into GoLang models
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Query</span>(<span style="color:#e6db74">&#34;/Search FOR Places;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Alternatively, output into JSON, which could be serialized into another interface/language if needed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">JSON</span>())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That&rsquo;s all for now, thanks for reading!</p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/docker-minimal-debian-image/" rel="prev">Build your own tiny debian docker image</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/ionic-2-fcm-notifications/" rel="next">Ionic 2 Framework - Integrating FCM Notifications</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

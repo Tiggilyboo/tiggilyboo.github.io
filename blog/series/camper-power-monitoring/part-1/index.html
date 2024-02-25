@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An adventure in low level microcontrollers and modbus protocols">
+
+    <title>Camper Power Monitoring: Part 1</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../../../">Home</a>
+          <a href="../../../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../../../music">Music</a>
+          <a href="../../../../contact">Contact</a>
+          <a href="../../../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Camper Power Monitoring: Part 1</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Jul 26, 2021
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../../../tags/camper">Camper</a>&nbsp;
+        
+          <a href="../../../../tags/e-ink">E-ink</a>&nbsp;
+        
+          <a href="../../../../tags/rs-485">RS-485</a>&nbsp;
+        
+          <a href="../../../../tags/rs-232">RS-232</a>&nbsp;
+        
+          <a href="../../../../tags/off-grid">Off Grid</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+      
+        This article is part of the series 
+        
+          <a href="../../../../series/camper-power-monitoring">Camper Power Monitoring</a></li>
+         
+       
+    </div>
+
+    <article>
+            <h1 id="what">What?</h1>
+<p>Some of you may know that I have been converting a panel van into a camper over the past 9 months or so. As a part of building this, we opted to install a solar panel, and altenator charging to some leisure batteries.</p>
+<p>So how do we go about tracking how much power we are bringing in, and consuming? Here begins my journey to displaying this information and more&hellip;</p>
+<p>This article was written at the time of: <a href="https://github.com/Tiggilyboo/vanny-hub/commit/3df2a9a53831a1d05675214de9160693893fbb2e">git repo, at roughly commit 3df2a9a538</a></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Be able to see current battery state, current solar panel charge, or altenator charging wattage.</li>
+<li>Estimate at current charge / discharge rate when the batteries will be fully charged or discharged.</li>
+<li>(Non-functional): Don&rsquo;t broadcast segments of this information over bluetooth, or have a display for each of these technologies (A lot of products for these charging technologies come with displays which manage just this singular device, but not multiple).</li>
+<li>Be able to download historical statistics to do simple forcasting of usage.</li>
+</ul>
+<h2 id="products--technology">Products / Technology</h2>
+<p>This project will not entirely be useful to a lot of people as I am integrating several bespoke products, however they use very similar underlying communication protocols, namely Modbus.</p>
+<h3 id="solar">Solar</h3>
+<p>(RVR40) Renogy Rover 40A: Uses RS-232 over RJ12 (the 6 pin cable, not 4).</p>
+<h3 id="altenator">Altenator</h3>
+<p>(DCC50S) Renogy DC-DC Battery Charger: Uses RS-485 over RJ45</p>
+<ul>
+<li>Connects your engine&rsquo;s AGM battery to your leisure batteries. This particular unit also comes with a MPPT Charge controller, however since we have opted for a higher voltage solar panel array, we are not using it.</li>
+</ul>
+<h3 id="microcontroller">Microcontroller</h3>
+<p>Raspberry Pi Pico: Has 2 UART ports each of which can be used independently with the above described communication technologies. It also provides enough SPI / I2C for any displays that we wanted to hook up.</p>
+<h3 id="display">Display</h3>
+<p>Waveshare 2.9&quot; E-ink display: Just big enough to not be infuriating to look at some a distance (in the van). Also, not too bad a price, and the refresh frequency is not a huge deal, given the monitoring may only update once a minute or so.</p>
+<h2 id="wiring">Wiring</h2>
+<p><img src="http://simonwillshire.com/public/images/vanny-components-overview.svg" alt="Component Overview Diagram"></p>
+<p>Here is an overview of the various components, the wiring itself you may choose which pins to use, or follow off of the pinouts I have defined in <code>devices-modbus.h</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define RS485_PORT uart0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS485_BR 9600   </span><span style="color:#75715e">// Baudrate
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define RS485_DBITS 8   </span><span style="color:#75715e">// Data bits
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define RS485_SBITS 1   </span><span style="color:#75715e">// Stop bits (Not 2 as advertised in docs!!)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define RS485_PIN_TX 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS485_PIN_RX 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS485_PIN_RTS 22  </span><span style="color:#75715e">// Request to send GPIO pin 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS232_PORT uart1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS232_BR 9600
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS232_DBITS 8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS232_SBITS 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS232_PIN_TX 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RS232_PIN_RX 5
+</span></span></span></code></pre></div><p>And the display is using the following pinout in <code>display/display-ws-eink.h</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define SPI_PORT      spi1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SPI_BR        4000000 </span><span style="color:#75715e">// Baudrate
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define SPI_PIN_DC    8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SPI_PIN_CS    9
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SPI_PIN_CLK   10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SPI_PIN_DIN   11 </span><span style="color:#75715e">// Aka. MOSI
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define SPI_PIN_RST   12
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SPI_PIN_BSY   13
+</span></span></span></code></pre></div><h3 id="communication-pinouts">Communication Pinouts</h3>
+<p>RJ45 Pinouts for DCC50S and LFP100S:
+(Pin numbers starting left to right, with clip facing upwards)</p>
+<p>1: +5v
+2: A
+3: B
+4: GND
+5-8: Not used</p>
+<p>Also of note, since we are using a half duplex (either transmitting or receiving but not both) serial communication method, we are capable of wiring the A, B, GND RJ45 connectors together to interact with the same TTY communication board. In this case I have opted for a MAX485 based board to do the job, they are easy to find and quite accessible.</p>
+<h2 id="method">Method</h2>
+<p>So if you have no clue what this &lsquo;Modbus&rsquo; thing is, have a quick squiz of the obligatory <a href="https://en.wikipedia.org/wiki/Modbus">Wikipedia article</a>. The devices that we will be interfacing with use the RTU variant over TTY.</p>
+<h3 id="okay-so-how-do-we-access-this-information">Okay, so how do we access this information?</h3>
+<p>After scouring the internet for quite some time for each of these devices address mappings (We need to know where the information can be accessed on each device in order to consume it, to ultimately display it on the screen), I was able to find the mappings from fellow tinkerers for:</p>
+<ul>
+<li>(RVR40) Renogy Rover Solar Charge Controller: <a href="https://github.com/KyleJamesWalker/renogy_rover/blob/master/reference/ROVER%20MODBUS.pdf">Tinkerer on github</a></li>
+<li>(DCC50S) Renogy DC-DC Battery Charger: <a href="https://support.renogy.com/helpdesk/attachments/35092136259">Official documentation</a></li>
+</ul>
+<p>However that leads us to the smart lithium batteries (for which this is probably the most important information: what is the state of charge? Otherwise we would require to install a shunt resistor or hall effect sensor&hellip; This device has proven to be imppossible to find, which means we have to reverse engineer it!</p>
+<h3 id="great-how-do-we-reverse-engineer-the-mappings">Great, how do we reverse engineer the mappings?</h3>
+<p>Since the Modbus RTU protocol only allocates a single byte (and further restricts it to 247 addresses, see <a href="https://en.wikipedia.org/wiki/Modbus#Modbus_RTU_frame_format_(primarily_used_on_asynchronous_serial_data_lines_like_RS-485/EIA-485)">Modbus RTU frame format</a>), we can brute force each unit address and see if any response comes back. In this case I am querying the holding register space (Function 03).</p>
+<p><strong>Request</strong></p>
+<blockquote>
+<p>f7 03 00 01 d5 cA</p>
+</blockquote>
+<p>And sure enough, we get a response back from the very last address 247 (Yes, I incremented from 1&hellip;):</p>
+<p><strong>Response</strong></p>
+<blockquote>
+<p>f7 83 02 c4 20</p>
+</blockquote>
+<p>Eh, hold on a minute, we only get a length of 5, and why are we getting function code 83 back?</p>
+<p>So <a href="http://www.simplymodbus.ca/exceptions.htm">apparently</a>, Modbus has an exception code format. In this case 83 refers to the exception for function 03 (Most significant bit set high). Great, and 02 is the exception code, which means:</p>
+<p><strong>Illegal Data Address</strong></p>
+<blockquote>
+<p>The data address received in the query is not an allowable address for the slave. More specifically, the combination of reference number and transfer length is invalid. For a controller with 100 registers, a request with offset 96 and length 4 would succeed, a request with offset 96 and length 5 will generate exception 02.</p>
+</blockquote>
+<p>Fun, so this means we need to try other addresses, but at least we know what the LFP100S unit is operating at! The bad news is that that same RTU frame format allocates 2 bytes, which in unsigned format is a whopping <strong>65,535</strong> registers to check&hellip;</p>
+<p>Fast forward roughly a few hours of brute forcing addresses (We check the response is length 5 and that the function response is upper bit high, then check the next address&hellip;), and with this I have gleaned the following addresses!</p>
+<ul>
+<li>5000 - 5033</li>
+<li>5035 - 5052</li>
+<li>5100 - 5141</li>
+<li>5200 - 5223</li>
+</ul>
+<p>Here is a sample response from one of my units:</p>
+<p><strong>Request</strong></p>
+<p>Address: 0xf7 (247), function 3 (read registers), address 0x1388 (5000), count 0x21 (33 registers), crc</p>
+<blockquote>
+<p>f7 03 13 88 00 21 15 ea</p>
+</blockquote>
+<p><strong>Response</strong></p>
+<blockquote>
+<p>f7 03 42 00 04 00 21 00 21 00 21 00 21 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</p>
+</blockquote>
+<p>Fantastic, so what do we do with this information?
+With a bit of guess work and plugging in various devices to discharge the batteries over time and taking more data points, we can figure out at least a few of the registers&rsquo; meanings.</p>
+<p>For instance, since I had a voltmeter handy, I measured the output of the LFP100S bank, in this case 13.4v. Since all the registers are bytes (no float precision), typically this would be stored in 10 or 100 times that value. So, scanning our register responses for <code>0x86</code> in hex.</p>
+<p>In this case this corresponds with address <code>5015</code>. By making several snapshots of the state and filling these into a spreadsheet, I was able to quickly determine the differences between the states. However, I have yet to track down the overall percentage of state of charge&hellip; Hopefully with more data, things will become clearer.</p>
+<h2 id="e-ink-polling-and-updating">E-Ink Polling and Updating</h2>
+<p>Now onto a completely different topic&hellip; how often do we wish to update the information, and how often will that information be displayed?</p>
+<p>Since we are working with an E-ink display, we do not want to update the screen every time we poll for information (Well we can, but you would be looking at mostly flashing black and white pixels more that actual information&hellip;) we need to figure out a way to average our results over periods of time.</p>
+<p>For this purpose I have employed a rolling average calculation, which does not require the entire data set, but just the last averaged number. This saves our microcontroller in both memory and overall operations to calculate.</p>
+<p>It goes a little like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update_rolling_statistic</span>(<span style="color:#66d9ef">uint16_t</span><span style="color:#f92672">*</span> avg, <span style="color:#66d9ef">uint16_t</span> count, <span style="color:#66d9ef">uint16_t</span> new_value) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(stats_rolling_count <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">*</span>avg <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>avg <span style="color:#f92672">*</span> (count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> new_value) <span style="color:#f92672">/</span> count;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, we employ this every time we receive a new bit of information from a device, and update a rolling average. Once our display is being updated, we can use this rolling average to display.</p>
+<p>We can further store these rolling averages every hour (or a predetermined length of time in constant intervals), and display statistics!</p>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<ul>
+<li>Continue finding where oh where the holding register address blocks are in the LFP100S&rsquo;, specifically the state of charge in percentage or an Amp Hour remaining figure!</li>
+<li>Show some screenshots of the working unit, showcase some of the UI, and interface choices.</li>
+</ul>
+<p>So with that scatter plot of a blog entry, I leave you with a topgear sounding bombshell&hellip;</p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/" rel="prev">Camper Power Monitoring: Part 2</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/" rel="next">Handwired Keyboard Project: Part 4</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

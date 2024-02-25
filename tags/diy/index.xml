@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DIY on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/diy/</link>
+    <description>Recent content in DIY on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Mar 2020 12:37:00 +1300</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/diy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Handwired Keyboard Project: Part 4</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</guid>
+      <description>Hello everybody, a much delayed posting of this series (I completed the project January 12th or so&amp;hellip;), I&amp;rsquo;ve been travelling around the world at exactly the wrong time, but I thought since I&amp;rsquo;ve got the time to finally post the final part to this series, let&amp;rsquo;s get started!&#xA;The Case I was able to grab a friends dremel to modify the existing Aluminium Hi-Pro Planck case. Needed to widen the port area in order to fit the HDMI port, audio, and USB-C cabling in.</description>
+    </item>
+  </channel>
+</rss>

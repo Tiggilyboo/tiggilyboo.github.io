@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on Simon Willshire</title>
+    <link>http://simonwillshire.com/topics/programming/</link>
+    <description>Recent content in Programming on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Feb 2018 16:42:00 +1300</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/topics/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatic HTTPS Server using Caddy Reverse-Proxy on Google Kubernetes Engine</title>
+      <link>http://simonwillshire.com/blog/caddy-https-kubernetes/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/caddy-https-kubernetes/</guid>
+      <description>Easy HTTPS It has always frustrated me that even the largest companies like Microsoft have had HTTPS certificate renewal issues. With the invention of technologies like Let&amp;rsquo;s Encrypt people can finally not have to pay a fortune for certificates, and renew using its API. To make this process even easier, there are web server&amp;rsquo;s like Caddy that implement this for you. There is no excuse anymore, just do HTTPS from the start.</description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 3: Writing a Programming Language Parser (Nom)</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-3/</link>
+      <pubDate>Tue, 23 Aug 2016 22:53:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-3/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series.&#xA;Writing Your Own Programming Language parser So, recently I&amp;rsquo;ve been looking into improving/extending a Brainfuck interpreter that I wrote a while back to pick up a little more Rust and eventually write a full compiler. For the purpose of this article, I will be catering the parser towards capturing tokens that pertain to Brainfuck or an extended variant of it, however the concepts are largely the same.</description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 2: Vulkan API</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-2/</link>
+      <pubDate>Sun, 24 Jul 2016 14:54:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-2/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series. Vulkano recommends v1.9+ as of writing this article.&#xA;Vulkan API Part 2 will look at implementing a binding to the Vulkan API. I&amp;rsquo;m assuming an introduction to the graphics API is not needed, and goes without saying - It&amp;rsquo;s Khronos&amp;rsquo; new graphics API which is intended to replace OpenGL. So, for this post I&amp;rsquo;ll be setting up Vulkan 1.</description>
+    </item>
+  </channel>
+</rss>

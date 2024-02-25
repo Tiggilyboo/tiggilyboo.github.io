@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MPICH3 on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/mpich3/</link>
+    <description>Recent content in MPICH3 on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Feb 2016 15:47:17 -0500</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/mpich3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ARM Beowolf Cluster</title>
+      <link>http://simonwillshire.com/papers/odroid-arm-cluster/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/odroid-arm-cluster/</guid>
+      <description>Original Course Paper (2014) This paper was writted for an operating systems course (COIS-3320H) in 2014. It analyses the ARM big.LITTLE architecture and scheduling algorithms. The paper documents the steps in order to create an Odroid beowolf cluster (Single board ARM computers) and set up messaging using MPICH3 and a central NFS storage.&#xA;ARM Beowolf Cluster (PDF) </description>
+    </item>
+  </channel>
+</rss>

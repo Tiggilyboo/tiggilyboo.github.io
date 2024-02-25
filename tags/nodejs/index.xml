@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NodeJS on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/nodejs/</link>
+    <description>Recent content in NodeJS on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Oct 2017 13:39:00 -1200</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hey, NativeScript!</title>
+      <link>http://simonwillshire.com/blog/nativescript/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/nativescript/</guid>
+      <description>Purpose Right, so you may have seen Ionic, or Cordova based hybrid mobile applications - But you ask yourself, is there a better way to write a cross-platform mobile application in native code without using browser based UI and rendering? Well, Telerik has been developing a solution called NativeSCript - It transpiles good old web code (JS, CSS) or the Angular/Typscript solution into native code. ie. Java (Android) and Swift/Objective C (iOS).</description>
+    </item>
+  </channel>
+</rss>

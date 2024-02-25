@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>University on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/university/</link>
+    <description>Recent content in University on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Feb 2016 15:59:52 -0500</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/university/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced Algorithms</title>
+      <link>http://simonwillshire.com/papers/advanced-algorithms/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/advanced-algorithms/</guid>
+      <description>Original Course Papers (2014) Here are a collection of papers I wrote for an advanced algorithms course (COIS-4050H) in 2014. Still remains to be the hardest course I&amp;rsquo;ve ever taken!&#xA;Selection / Median of Medians, Recursive Tiles, and Majority problems (PDF) Euclidian Travelling Salesman problem (PDF) </description>
+    </item>
+    <item>
+      <title>ARM Beowolf Cluster</title>
+      <link>http://simonwillshire.com/papers/odroid-arm-cluster/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/odroid-arm-cluster/</guid>
+      <description>Original Course Paper (2014) This paper was writted for an operating systems course (COIS-3320H) in 2014. It analyses the ARM big.LITTLE architecture and scheduling algorithms. The paper documents the steps in order to create an Odroid beowolf cluster (Single board ARM computers) and set up messaging using MPICH3 and a central NFS storage.&#xA;ARM Beowolf Cluster (PDF) </description>
+    </item>
+    <item>
+      <title>Efficient Parallelism</title>
+      <link>http://simonwillshire.com/papers/efficient-parallelism/</link>
+      <pubDate>Sat, 27 Feb 2016 15:37:18 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/efficient-parallelism/</guid>
+      <description>Original Course Paper (2015) This paper was written for a distributed computer course (COIS-4350H) in 2015. It analyses the Parallela architecture using ARM and it&amp;rsquo;s MIMD coprocessor (Epiphany).&#xA;Efficient Parallelism (PDF) </description>
+    </item>
+    <item>
+      <title>Linear Genetic Programming</title>
+      <link>http://simonwillshire.com/papers/linear-genetic-programming/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/linear-genetic-programming/</guid>
+      <description>Original Course Paper (2014) This paper was written for an artificial intelligence course (COIS-4550H) in 2014. It examines a self-programming program using genetic algorithm techniques (with a fitness evaluation).&#xA;Linear Genetic Programming (PDF) </description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Series on Simon Willshire</title>
+    <link>http://simonwillshire.com/series/</link>
+    <description>Recent content in Series on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Sep 2021 09:28:00 +0100</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camper Power Monitoring</title>
+      <link>http://simonwillshire.com/series/camper-power-monitoring/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/series/camper-power-monitoring/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project</title>
+      <link>http://simonwillshire.com/series/handwired-keyboard-project/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/series/handwired-keyboard-project/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Exploring Rust</title>
+      <link>http://simonwillshire.com/series/exploring-rust/</link>
+      <pubDate>Tue, 23 Aug 2016 22:53:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/series/exploring-rust/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

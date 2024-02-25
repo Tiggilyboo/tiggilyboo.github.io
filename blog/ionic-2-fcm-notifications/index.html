@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="I started using the Ionic Framework for work, and had noticed people struggling with the FCM integration for firebase messaging, so I wrote this tutorial to help everyone out!">
+
+    <title>Ionic 2 Framework - Integrating FCM Notifications</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../">Home</a>
+          <a href="../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../music">Music</a>
+          <a href="../../contact">Contact</a>
+          <a href="../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Ionic 2 Framework - Integrating FCM Notifications</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Oct 10, 2016
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../tags/angularjs-2">AngularJS 2</a>&nbsp;
+        
+          <a href="../../tags/ionic-framework">Ionic Framework</a>&nbsp;
+        
+          <a href="../../tags/fcm">FCM</a>&nbsp;
+        
+          <a href="../../tags/notifications">Notifications</a>&nbsp;
+        
+          <a href="../../tags/mobile">Mobile</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+       
+    </div>
+
+    <article>
+            <h2 id="what">What?</h2>
+<p>I don&rsquo;t know man, you clicked this link, you tell me&hellip;</p>
+<h3 id="ionic">Ionic?</h3>
+<p>If you are unfamiliar with the <a href="http://ionicframework.com/docs/v2/">Ionic framework</a>, I&rsquo;d start by checking out some of the docs and features before going through this. Essentially we will be using this framework to display content on a mobile platform (Android, iOS, WP), and be sending native notifications to the device via <a href="http://">Firebase</a> (A Google service for messaging, authentication, and a bunch of others).</p>
+<p>Without going into the nitty gritty details, Ionic uses <a href="https://cordova.apache.org/">Cordova</a> (supported by ye ole&rsquo; Apache) to interface with the phone&rsquo;s various functions. There are other frameworks, such as <a href="http://phonegap.com/">PhoneGap</a> which are quite popular as well. This tutorial uses a Cordova plugin called <a href="https://www.npmjs.com/package/cordova-plugin-fcm">FCMPlugin</a> to communicate with Firebase which uses GCM.</p>
+<p>Alternatively, Ionic offers various services which they call their <a href="http://ionic.io/">cloud platform</a>, one of these services is notifications, however there are some costs associated with heavy use of these features. In this guide we will be setting up firebases messaging only.</p>
+<p>So let&rsquo;s set Ionic Up, you will need the following:</p>
+<ul>
+<li>Install NodeJS (As of writing, I grabbed stable 4.2.6, so anything after that should do.)</li>
+<li>Install npm (Alternatively, you can install npm to install NodeJS using <code>sudo npm install -g n &amp;&amp; sudo n</code>)</li>
+<li>Install Ionic <code>npm install -g ionic@2.1.0</code></li>
+</ul>
+<p>Sit around and watch the little twiddly cursor flip around, or stare off into space for a bit&hellip; Then create a new project folder to start your Ionic project in, and create a new version 2 project using the Ionic-CLI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ionic start ionic-fcm --v2
+</span></span><span style="display:flex;"><span>$ cd ionic-fcm
+</span></span><span style="display:flex;"><span>$ ionic serve
+</span></span></code></pre></div><p>That should fire up a new mobile app template, and invoke a new browser tab/window to display the content to debug with - This is handy if you want to change things on the fly without wasting time uploading the application to your phone every minute of the day.</p>
+<h3 id="firebase-messaging-fcm--gcm">Firebase Messaging FCM / GCM?</h3>
+<p>Right so next up, let&rsquo;s set up Firebase, login create a new project (One for Android and one for iOS if you so choose). Click the <strong>Project Settings</strong> from the gear icon in the firebase console.</p>
+<p>It should look something like this, provided Google has not redone their UI again:</p>
+<p><img src="http://i.imgur.com/GqWYRbn.png" alt="Firebase Messaging Setup"></p>
+<ul>
+<li>Android Setup: Download the <strong>google-services.json</strong> file, and place it in <strong>./platforms/android/google-services.json</strong></li>
+<li>iOS Setup: Download the <strong>GoogleService-Info.plist</strong> file, and place it in <strong>./platforms/ios/GoogleService-Info.plist</strong></li>
+</ul>
+<h2 id="lets-do-it">Let&rsquo;s do it!</h2>
+<p>Install the Cordova FCM plugin:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cordova plugin add cordova-plugin-fcm
+</span></span></code></pre></div><p>Setup some sample code to receive notifications with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/// Throw this in a provider constructor you will use for notifications:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">platform</span>.<span style="color:#a6e22e">ready</span>().<span style="color:#a6e22e">then</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">FCMPlugin</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">FCMPlugin</span>.<span style="color:#a6e22e">getToken</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">t</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Use this token for sending device specific messages\nToken: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">t</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Uh-Oh!\n&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">e</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">FCMPlugin</span>.<span style="color:#a6e22e">onNotification</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">d</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">wasTapped</span>){  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Background recieval (Even if app is closed),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//   bring up the message in UI
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Foreground recieval, update UI or what have you...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }
+</span></span><span style="display:flex;"><span>    }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">msg</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// No problemo, registered callback
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Arf, no good mate... &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Notifications disabled, only provided in Android/iOS environment&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>For more plugin documentation, check out the github repo <a href="https://github.com/fechanique/cordova-plugin-fcm">here</a>.</p>
+<h2 id="how-to-send-notifications-to-devices">How to send notifications to devices?</h2>
+<p>Assumedly you are hosting a service which provides REST/some interface to your application, send the device token to the service and affiliate it with the user. Once you have reason to send said user a notification, assemble a POST request from the service:</p>
+<ul>
+<li>POST: <code>https://fcm.googleapis.com/fcm/send</code></li>
+<li>HEADER:
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>Authorization: key=AIzaSy*******************</code></li>
+</ul>
+</li>
+</ul>
+<p>The Authorization header contents can be found in the previously mentioned *.json and *.plist files specific to your application.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;notification&#34;</span>:{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;title&#34;</span>:<span style="color:#e6db74">&#34;Notification title&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;body&#34;</span>:<span style="color:#e6db74">&#34;Notification body&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sound&#34;</span>:<span style="color:#e6db74">&#34;default&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;click_action&#34;</span>:<span style="color:#e6db74">&#34;FCM_PLUGIN_ACTIVITY&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;icon&#34;</span>:<span style="color:#e6db74">&#34;fcm_push_icon&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>:{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Some message data to help render the content when received.&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;to&#34;</span>:<span style="color:#e6db74">&#34;/topics/topicExample&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;priority&#34;</span>:<span style="color:#e6db74">&#34;high&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;restricted_package_name&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>to</code> Can specify a single device id, or you may broadcast to subscribed topics with many devices using the above <code>/topics/&lt;topicname&gt;</code> format.</li>
+</ul>
+<h3 id="topic-subscription">Topic Subscription</h3>
+<p>Assuming the service provides some list of topics, or the user is creating a topic, they may subscribe to one that firebase can use, using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">FCMPlugin</span>.<span style="color:#a6e22e">subscribeToTopic</span>(<span style="color:#e6db74">&#39;topicExample&#39;</span>);
+</span></span></code></pre></div><p>That should just about do it, you should be able to flesh out the UI and event handling from there - If you have any questions chuck em&rsquo; in the comments section below!</p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/wapiq/" rel="prev">WAPIQ: Web API Query Language</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/series/exploring-rust/part-3/" rel="next">Exploring Rust - Part 3: Writing a Programming Language Parser (Nom)</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

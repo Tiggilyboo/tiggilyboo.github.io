@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A guide on how to set up a caddy web server which reverse proxies to another kubernetes pod.">
+
+    <title>Automatic HTTPS Server using Caddy Reverse-Proxy on Google Kubernetes Engine</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../">Home</a>
+          <a href="../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../music">Music</a>
+          <a href="../../contact">Contact</a>
+          <a href="../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/scala.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/brainfuck.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/yaml.min.js"></script>
+<script type="text/javascript">
+  hljs.registerLanguage("wapiq",function(a){var b=a.C("#","$");return{cI:!0,i:/[\[\] {}#]/,c:[{bK:"API GET POST MAP FOR WHERE",e:/;/,eW:!0,l:/[\w\.]+/,k:{keyword:"/ API GET POST MAP FOR WHERE",literal:"args path type head query args"},c:[{cN:"attr",b:'"',e:'"',c:[a.BE,{b:"\\\\."}]},{cN:"string",b:"`",e:"`",c:[a.BE,{b:"\\\\."}]},a.CNM,a.CBCM,b]},{cN:"type",b:'"',e:'"',c:[a.BE,{b:"\\\\."}]},{bK:"/",cN:"attr",b:".",e:"FOR",c:[a.BE,{b:"\\\\."}]},{cN:"string",b:"`",e:"`",c:[a.BE,{b:"\\\\."}]},a.CBCM,b]}});
+</script>
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Automatic HTTPS Server using Caddy Reverse-Proxy on Google Kubernetes Engine</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Feb 27, 2018
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../tags/programming">Programming</a>&nbsp;
+        
+          <a href="../../tags/docker">Docker</a>&nbsp;
+        
+          <a href="../../tags/kubernetes">Kubernetes</a>&nbsp;
+        
+          <a href="../../tags/gke">GKE</a>&nbsp;
+        
+          <a href="../../tags/caddy">Caddy</a>&nbsp;
+        
+          <a href="../../tags/reverse-proxy">Reverse Proxy</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+       
+    </div>
+
+    <article>
+            <h2 id="easy-https">Easy HTTPS</h2>
+<p>It has always frustrated me that even the largest companies like Microsoft have had HTTPS certificate renewal issues. With the invention of technologies like <a href="https://letsencryptonline.com/">Let&rsquo;s Encrypt</a> people can finally not have to pay a fortune for certificates, and renew using its API. To make this process even easier, there are web server&rsquo;s like <a href="https://caddyserver.com/">Caddy</a> that implement this for you. There is no excuse anymore, just do HTTPS from the start. Here is one way of deploying it on Google&rsquo;s Kubernetes Engine!</p>
+<h3 id="im-lost-youve-mentioned-too-many-technologies">I&rsquo;m lost, you&rsquo;ve mentioned too many technologies</h3>
+<p>Yes, there are lot&rsquo;s of weird names in this industry, here is a very quick rundown on how they all fit together.</p>
+<ul>
+<li><strong>Let&rsquo;s Encrypt</strong>: Verifies and signs your website so you can host using a secure https:// site.</li>
+<li><strong>Caddy</strong>: A web server which uses the above</li>
+<li><strong>Docker</strong>: A way of packaging all this stuff up neatly so that it can be hosted exactly the same way in the cloud.</li>
+<li><strong>Kubernetes</strong>: One way of hosting docker containers in a cluster</li>
+<li><strong>Google Kubernetes Engine</strong>: Uses the above, open access $150 free credit for a year, makes tutorials like these easy and accessible to people like you!</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>Alright, let&rsquo;s begin. First up, you need to set up a local development environment so that you can tinker locally before pushing everything live.</p>
+<h3 id="prerequisite-software">Prerequisite Software</h3>
+<p>Ensure you&rsquo;ve installed the below, I&rsquo;ve also included a handy bash script so that you can just grab the packages on any linux debian environment (ubuntu, mint, debian chicken spiced or whatever the cool kids are on about these days)&hellip;</p>
+<h4 id="docker">Docker</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</span></span><span style="display:flex;"><span>$ sudo add-apt-repository <span style="color:#e6db74">&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -cs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> stable&#34;</span>
+</span></span><span style="display:flex;"><span>$ sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get install docker-ce
+</span></span></code></pre></div><h4 id="google-cloud-gcloud-with-kubectl-components">Google Cloud (gcloud with kubectl components)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;deb http://packages.cloud.google.com/apt </span>$CLOUD_SDK_REPO<span style="color:#e6db74"> main&#34;</span> | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+</span></span><span style="display:flex;"><span>$ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+</span></span><span style="display:flex;"><span>$ sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get install google-cloud-sdk
+</span></span></code></pre></div><p>Next up, ensure you have a google account, and have signed up on <a href="https://console.cloud.google.com">Google Cloud</a>. Create a new project, and create a new cluster under it. then run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ gcloud init
+</span></span></code></pre></div><p>Specify the project you have created and the nearest region to you or where you whish to deploy to. After, we need to install <code>kubectl</code> with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ gcloud components install kubectl
+</span></span></code></pre></div><p>Navigate to your cloud console clusters and hit the big-ole <code>Connect</code> button. A dialog will come up with akin to:</p>
+<p><code>gcloud container clusters get-credentials alc-backend --zone australia-southeast1-a --project alcohol-survey-149200</code></p>
+<p>Run the line in the dialog (similar to the above) to configure your kubectl CLI. Afterwards, you can run things like <code>kubectl get pods</code> to return all pods which are running in your cluster. You can even run a bash session on a running container by using: <code>kubectl exec -it &lt;pod-name&gt; bash</code>!</p>
+<h2 id="docker-images">Docker Images</h2>
+<p>For the purpose of this guide, I use a minimal debian base image, more <a href="http://simonwillshire.com/blog/Docker-Minimal-Debian-Image/">here</a>. You can proceed one of two ways, pull my prebuilt images, or write your own using a provided configuration.</p>
+<p><strong>Pull TLDR; Method</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ docker pull tiggilyboo/https
+</span></span></code></pre></div><p><strong>DIY Dockerfile Method</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> tiggilyboo/base</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Caddy HTTPS rproxy&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">MAINTAINER</span><span style="color:#e6db74"> Simon Willshire &lt;me@simonwillshire.com&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> DEBIAN_FRONTEND<span style="color:#f92672">=</span>noninteractive <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    BUILD_PACKAGES<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tar curl git wget libcap2-bin ca-certificates openssh-client&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install --no-install-recommends -y $BUILD_PACKAGES <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  mkdir -p /config <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  curl <span style="color:#e6db74">&#34;https://caddyserver.com/download/linux/amd64&#34;</span> | tar --no-same-owner -C /usr/bin/ -xz caddy <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  /usr/sbin/setcap <span style="color:#e6db74">&#39;cap_net_bind_Service=+ep&#39;</span> /usr/bin/caddy <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  apt-get autoremove -y <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  rm -rf /var/lib/apt/lists <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  rm -rf /var/cache/apt <span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80 443</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;caddy&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h3 id="configuration">Configuration</h3>
+<p>Up until now, you&rsquo;ve been handed a boatload of software, what comes next is the most important to get right - We need to configure Caddy in such a way that it points to a running container in the same cluster. Also, we need to be able to identify ourselves to Let&rsquo;s Encrypt so that it can start serving us up fresh certificates.</p>
+<p>The way that I have configured caddy to run is by using another Dockerfile which inherits from tiggilyboo/https, if you built from the configuration, remember to change the name of the <code>FROM</code> keyword.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> tiggilyboo/https</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./entrypoint.sh /entrypoint.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/entrypoint.sh&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>All this does is sets up the container to run with the entrypoint on startup. The <code>entrypoint.sh</code> file injects caddy with a configuration and starts it up:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>mkdir -p /config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">some.domain.name.here {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  proxy / </span>$POD_IP<span style="color:#e6db74">:80 {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    transparent
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  gzip
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  tls letsencrypt-email@address.com 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}&#34;</span> &gt;&gt; /config/Caddyfile
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Loading caddy config: &#34;</span>
+</span></span><span style="display:flex;"><span>cat /config/Caddyfile
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>DEV<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  caddy -quic --conf /config/Caddyfile --log stdout
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;In development mode, https is disabled.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>Let&rsquo;s break down some of the components:</p>
+<ul>
+<li><code>some.domain.name.here</code>: Enter your full domain name with subdomain if required here.</li>
+<li><code>$POD_IP</code>: Environmental variable containing the running pod&rsquo;s IP address to communicate with. This can be whatever you like, just export the variable from a grep ifconfig or whatever.</li>
+<li><code>letsencrypt-email@address.com</code>: An identifiable email address to sign up with Let&rsquo;s Encrypt with and renew your certificates.</li>
+</ul>
+<p>In essense, the above script injects a caddyfile. Caddyfile&rsquo;s are configurations which Caddy server uses, in this case we are directing traffic with a reverse proxy <code>proxy</code> at root <code>/</code> into <code>$POD_IP:80</code> at port 80 (At your existing web server container / pod).</p>
+<p>Great, we should have a working Caddy configuration and we can now build the docker images, we use <code>docker-compose</code> for this, you can install it via:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-<span style="color:#e6db74">`</span>uname -s<span style="color:#e6db74">`</span>-<span style="color:#e6db74">`</span>uname -m<span style="color:#e6db74">`</span> -o /usr/local/bin/docker-compose
+</span></span><span style="display:flex;"><span>$ sudo chmod +x /usr/local/bin/docker-compose
+</span></span></code></pre></div><p>Next up, we need to write a docker-compose.yml file so that we can set up our environment to build and test locally, if you are not familiar with this process, check out some of <a href="https://docs.docker.com/compose/compose-file/#service-configuration-reference">their documentation</a>.</p>
+<p>Write a new file <code>docker-compose.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>: 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">web</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>: 
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./web</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./web:/src/web</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">links</span>: 
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">db</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">https</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./https</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;443:443&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">links</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">web</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POD_IP=172.18.0.1</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DEV=true</span>
+</span></span></code></pre></div><p>In the above example, we set up two images, web and https. It assumes we have a Dockerfile located in ./web and ./https that will run.
+The https image maps port 80 and 443 (http and https) ports to the local machine.</p>
+<p>Alright, we can finally build the docker containers and push to our kubernetes cluster in the next section!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ docker-compose build
+</span></span><span style="display:flex;"><span>$ docker images 
+</span></span></code></pre></div><p>If you want to just run and test it on your local machine, you can just do <code>docker-compose up</code>. Though you won&rsquo;t be able to test your https certificate unless you are hosting on the same public IP as your DNS record states on your domain (Let&rsquo;s Encrypt won&rsquo;t be able to assign your certificate on your local machine). This is why I&rsquo;ve added a development flag to disable the https container.</p>
+<h3 id="google-kubernetes-engine">Google Kubernetes Engine</h3>
+<p>After creating the images in the last section, you will need to tag your images to associate them to your poject and upload to your Google Cloud image repository. There is more information on this <a href="https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app">here</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ docker tag image_name gcr.io/my-project/hello-app
+</span></span><span style="display:flex;"><span>$ gcloud docker -- push gcr.io/my-project/hello-app 
+</span></span></code></pre></div><p>Once this completes, you can now apply your kubernetes elements and host your https web server. Here is an example configuration:</p>
+<p>kube-web.yml:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">web</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">web</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">gcr.io/my-project/web</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">tmu-web</span>
+</span></span></code></pre></div><p>kube-https.yml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">https</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">https</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">gcr.io/my-project/https</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">Always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">https</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">POD_IP</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">value</span>: <span style="color:#ae81ff">web</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web-port</span>
+</span></span></code></pre></div><p>Then apply it to your Google Kubernetes cluster:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ kubectl apply -f kube-web.yml
+</span></span><span style="display:flex;"><span>$ kubectl apply -f kube-https.yml
+</span></span></code></pre></div><p><strong>Reminder</strong>: Set your gcr.io/my-project to your project tag listed in <code>docker images</code> after you pushed your containers!</p>
+<p>Once you&rsquo;ve applied both files, you should be able to log to your cloud console and see the services hosted. You&rsquo;ll need to create a load balancer or make the https image hosted on a public IP. Hook up this public IP to your DNS A redirect or however you wish to set it up to your domain name.</p>
+<p>And lastly, to debug: check that your https container has a success handshake and setting of your certificate.
+It should look similar to the below&hellip;</p>
+<pre tabindex="0"><code>https	Feb 27, 2018, 4:12:34 PM	2018/02/27 03:12:34 http://www.somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	http://www.somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	2018/02/27 03:12:34 http://somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	http://somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	2018/02/27 03:12:34 https://www.somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	https://www.somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	2018/02/27 03:12:34 https://somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	https://somedomain.com
+https	Feb 27, 2018, 4:12:34 PM	done.
+https	Feb 27, 2018, 4:12:33 PM	2018/02/27 03:12:33 [INFO][www.somedomain.com] Certificate written to disk: /root/.caddy/acme/acme-v01.api.letsencrypt.org/sites/www.somedomain.com/www.somedomain.com.crt
+https	Feb 27, 2018, 4:12:33 PM	2018/02/27 03:12:33 [INFO][www.somedomain.com] Server responded with a certificate.
+https	Feb 27, 2018, 4:12:33 PM	2018/02/27 03:12:33 [INFO] acme: Requesting issuer cert from https://acme-v01.api.letsencrypt.org/acme/issuer-cert
+https	Feb 27, 2018, 4:12:31 PM	2018/02/27 03:12:31 [INFO][www.somedomain.com] acme: Validations succeeded; requesting certificates
+https	Feb 27, 2018, 4:12:31 PM	2018/02/27 03:12:31 [INFO][www.somedomain.com] The server validated our request
+https	Feb 27, 2018, 4:12:30 PM	2018/02/27 03:12:30 [INFO][www.somedomain.com] Served key authentication
+https	Feb 27, 2018, 4:12:29 PM	2018/02/27 03:12:29 [INFO][www.somedomain.com] acme: Trying to solve HTTP-01
+</code></pre><p>Et Voila! A signed active certificate. Once you get in the swing of things with this configuration - It&rsquo;s simple to set up and will automatically renew before the 3 month expiry.</p>
+<p>If you have any questions, just chuck them in the comments below.</p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/series/handwired-keyboard-project/part-1/" rel="prev">Handwired Keyboard Project: Part 1</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/nativescript/" rel="next">Hey, NativeScript!</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

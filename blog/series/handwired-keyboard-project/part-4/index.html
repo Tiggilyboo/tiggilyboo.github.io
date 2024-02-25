@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The case, and some final touches">
+
+    <title>Handwired Keyboard Project: Part 4</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../../../">Home</a>
+          <a href="../../../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../../../music">Music</a>
+          <a href="../../../../contact">Contact</a>
+          <a href="../../../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Handwired Keyboard Project: Part 4</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Mar 24, 2020
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../../../tags/planck">Planck</a>&nbsp;
+        
+          <a href="../../../../tags/keyboards">Keyboards</a>&nbsp;
+        
+          <a href="../../../../tags/diy">DIY</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+      
+        This article is part of the series 
+        
+          <a href="../../../../series/handwired-keyboard-project">Handwired Keyboard Project</a></li>
+         
+       
+    </div>
+
+    <article>
+            <p>Hello everybody, a much delayed posting of this series (I completed the project January 12th or so&hellip;), I&rsquo;ve been travelling around the world at exactly the wrong time, but I thought since I&rsquo;ve got the time to finally post the final part to this series, let&rsquo;s get started!</p>
+<h2 id="the-case">The Case</h2>
+<p>I was able to grab a friends dremel to modify the existing Aluminium Hi-Pro Planck case. Needed to widen the port area in order to fit the HDMI port, audio, and USB-C cabling in. Additionally, we drilled some holes to throw some standoffs under the PCB.</p>
+<p>Since the case is a hefty aluminium block, the case also is used as a heatsink for the board, I&rsquo;ve getting some solid 30C, however as with any passive cooling solution, the thermal inertia will eventually climb. I&rsquo;ve used the board at work for a few weeks idling in external peripheral mode and it has not gone above 50C.</p>
+<p>Without further ado, some pictures!</p>
+<p><img src="https://i.imgur.com/Dg7rC9w.jpg" alt="Case Dremel &amp; Fitting"></p>
+<p>In order to avoid shorting another board (Let&rsquo;s not talk about it again), I elevated the board to sit on the rk3399 casing against the case, also giving it a good thermal coupling to the case. Then applied some loving thermal paste.</p>
+<p><img src="https://i.imgur.com/pxABlEf.jpg" alt="Copper spacer"></p>
+<p>Next up, I ensured nothing shorted against the case or the keyboard matrix with some bodge electrical tape!</p>
+<p><img src="https://i.imgur.com/9hlVvh2.jpg" alt="Insulation &amp; SSD Wiring"></p>
+<p>Here&rsquo;s the final product, using it at work in external USB HID mode. The wire sticking out through the housing is a TTY board in case things get out of hand&hellip;</p>
+<p><img src="https://i.imgur.com/B5HruFC.jpg" alt="Final Product!"></p>
+<p>It&rsquo;s been a fun little project, let me know if you have any questions or comments. Cheers!</p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/" rel="prev">Camper Power Monitoring: Part 1</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/" rel="next">Handwired Keyboard Project: Part 3</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

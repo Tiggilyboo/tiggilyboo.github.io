@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on Simon Willshire</title>
+    <link>http://simonwillshire.com/topics/scala/</link>
+    <description>Recent content in Scala on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 31 Mar 2016 15:04:15 -0400</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/topics/scala/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adventures In Scala - Part 1: play-scala-intro</title>
+      <link>http://simonwillshire.com/blog/adventures-in-scala-part-1/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/adventures-in-scala-part-1/</guid>
+      <description>Learning Scala Part 1 - play-scala-intro So, as of writing this, my background is primarily C#. This post is the first part of a series which will document my transition into all things Scala. I will be writing a step by step on creating a simple web stack.&#xA;My Setup I&amp;rsquo;ll be using Linux Mint 17.3, but most flavours of debian should work for any of my bash.&#xA;PostgreSQL 9.3.11 IntelliJ IDEA, targeting Open JDK 1.</description>
+    </item>
+  </channel>
+</rss>

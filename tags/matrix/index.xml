@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matrix on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/matrix/</link>
+    <description>Recent content in Matrix on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Dec 2019 17:36:00 +1300</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/matrix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Handwired Keyboard Project: Part 3</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</guid>
+      <description>Intro Great it&amp;rsquo;s been 3 months, where the heck is my finished keyboard? Let&amp;rsquo;s get up to speed - I am curently typing this article with the new keyboard, without a case and a wonky ESC switch, but lets start at the beginning, from finishing Part 2:&#xA;We had a &amp;ldquo;working&amp;rdquo; interrupt firing and internal key events being issued to the SBC. We did not have external input mode via USB HID.</description>
+    </item>
+  </channel>
+</rss>

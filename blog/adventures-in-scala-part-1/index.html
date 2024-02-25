@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My transition into using a Scala web stack using the Play! Framework, PostgreSql, and Slick.">
+
+    <title>Adventures In Scala - Part 1: play-scala-intro</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../">Home</a>
+          <a href="../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../music">Music</a>
+          <a href="../../contact">Contact</a>
+          <a href="../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Adventures In Scala - Part 1: play-scala-intro</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Mar 31, 2016
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../tags/scala">Scala</a>&nbsp;
+        
+          <a href="../../tags/play">Play</a>&nbsp;
+        
+          <a href="../../tags/postgresql">PostgreSQL</a>&nbsp;
+        
+          <a href="../../tags/slick">Slick</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+       
+    </div>
+
+    <article>
+            <h2 id="learning-scala-part-1---play-scala-intro">Learning Scala Part 1 - play-scala-intro</h2>
+<p>So, as of writing this, my background is primarily C#. This post is the first part of a series which will document my transition into all things Scala. I will be writing a step by step on creating a simple web stack.</p>
+<h3 id="my-setup">My Setup</h3>
+<p>I&rsquo;ll be using Linux Mint 17.3, but most flavours of debian should work for any of my bash.</p>
+<ul>
+<li>PostgreSQL 9.3.11</li>
+<li>IntelliJ IDEA, targeting Open JDK 1.8_72</li>
+<li>Scala 2.11 with SBT, SSP, HOCON</li>
+<li>Play! 2.5.1 Framework (Using IntelliJ&rsquo;s plugin)</li>
+<li>Slick</li>
+</ul>
+<p><strong>Install our software packages</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get update
+</span></span><span style="display:flex;"><span>$ apt-get install postgresql postgresql-contrib openjdk-8-jdk
+</span></span><span style="display:flex;"><span>$ wget https://www.jetbrains.com/idea/download/download-thanks.html?platform<span style="color:#f92672">=</span>linux
+</span></span><span style="display:flex;"><span>$ sudo tar -xvzf ideaIU-2016.1.1.tar.gz -C /usr/share/intellij/
+</span></span><span style="display:flex;"><span>$ cd /usr/share/intellij
+</span></span><span style="display:flex;"><span>$ sudo bash ./idea.sh
+</span></span></code></pre></div><p><strong>Note:</strong> <em>If you&rsquo;re missing the openjdk-8-jdk package, add it to your repo list with <code>add-apt-repository ppa:openjdk-r/ppa</code></em></p>
+<h3 id="set-up-our-postgresql-db">Set up our PostgreSQL DB</h3>
+<p>By default, postgres creates a user named &lsquo;postgres&rsquo;, we want to login to them, and start up our postgres console in the default &lsquo;postgres&rsquo; database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo su postgres
+</span></span><span style="display:flex;"><span>$ psql -d postgres -U postgres
+</span></span></code></pre></div><p><em>Create a user and db. Connect to it, and set new user&rsquo;s permissions to rw.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> scalaplay <span style="color:#66d9ef">WITH</span> PASSWORD <span style="color:#e6db74">&#39;&lt;Password&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> scalaplaydb;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#960050;background-color:#1e0010">\</span><span style="color:#66d9ef">c</span> scalaplaydb
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">REVOKE</span> <span style="color:#66d9ef">ALL</span> <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DATABASE</span> scalaplaydb <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">PUBLIC</span>;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">REVOKE</span> <span style="color:#66d9ef">ALL</span> <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">SCHEMA</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">PUBLIC</span>;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">CONNECT</span> <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DATABASE</span> scalaplaydb <span style="color:#66d9ef">TO</span> scalaPlay;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">SELECT</span>,<span style="color:#66d9ef">UPDATE</span>,<span style="color:#66d9ef">INSERT</span>,<span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">ALL</span> TABLES <span style="color:#66d9ef">IN</span> <span style="color:#66d9ef">SCHEMA</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">TO</span> scalaplay;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">SELECT</span>,<span style="color:#66d9ef">UPDATE</span> <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">ALL</span> SEQUENCES <span style="color:#66d9ef">IN</span> <span style="color:#66d9ef">SCHEMA</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">TO</span> scalaplay;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">USAGE</span> <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">SCHEMA</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">TO</span> scalaplay;
+</span></span></code></pre></div><p><em>If you want to have new tables with privileges already granted for previous users, run this</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">PRIVILEGES</span> <span style="color:#66d9ef">IN</span> <span style="color:#66d9ef">SCHEMA</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">SELECT</span>,<span style="color:#66d9ef">UPDATE</span>,<span style="color:#66d9ef">INSERT</span>,<span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">ON</span> TABLES <span style="color:#66d9ef">TO</span> scalaplay;
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">PRIVILEGES</span> <span style="color:#66d9ef">IN</span> <span style="color:#66d9ef">SCHEMA</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">SELECT</span>,<span style="color:#66d9ef">UPDATE</span> <span style="color:#66d9ef">ON</span>  SEQUENCES <span style="color:#66d9ef">TO</span> scalaplay;
+</span></span></code></pre></div><p><em><strong>Some handy user check commands if you&rsquo;re not sure what users can do what:</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#960050;background-color:#1e0010">\</span>du            ; Displays <span style="color:#66d9ef">user</span> roles <span style="color:#66d9ef">with</span> attributes<span style="color:#f92672">/</span>membership
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#960050;background-color:#1e0010">\</span>l             ; Displays db list, <span style="color:#66d9ef">with</span> <span style="color:#66d9ef">access</span> <span style="color:#66d9ef">privileges</span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#960050;background-color:#1e0010">\</span>z             ; Displays <span style="color:#66d9ef">access</span> <span style="color:#66d9ef">privileges</span> <span style="color:#66d9ef">to</span> schemas
+</span></span></code></pre></div><p><em>Let&rsquo;s make some sample tables to interact with later</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">&lt;</span>name<span style="color:#f92672">&gt;</span>(...)
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#960050;background-color:#1e0010">\</span>q
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> exit
+</span></span></code></pre></div><h3 id="play-2x-framework-template">Play 2.X Framework Template</h3>
+<p><em>Grab a sample play framework project template to load into IntelliJ</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://www.lightbend.com/activator/template/bundle/play-scala-intro.zip
+</span></span><span style="display:flex;"><span>$ unzip play-scala-intro -d ~/play/
+</span></span><span style="display:flex;"><span>$ sudo ./$HOME/play/play-scala-intro/bin/activator ui
+</span></span></code></pre></div><p>Select the &lsquo;scala-play-intro&rsquo; template, and create it. This may take a bit of downloading Open the project in IntelliJ&hellip;</p>
+<h4 id="potential-issues">Potential Issues</h4>
+<ul>
+<li>If you get a <code>java.io.FileNotFoundException: (Permission denied)</code>, you may want to <code>sudo chown &lt;user&gt;:&lt;user&gt; -R ~/scala-play-intro</code></li>
+<li>If you get a <code>java.lang.UnsupportedClassVersionError: ... Unsupported major.minor version 52.0</code> or similar, ensure you are targeting the project to Java 1.8 through the IDE&rsquo;s project settings with (File -&gt; Project Structure). Also, you may want to make sure you set the java alternatives using:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo update-alternatives --config java
+</span></span><span style="display:flex;"><span>$ sudo update-alternatives --config javac
+</span></span><span style="display:flex;"><span>$ java -version
+</span></span></code></pre></div><h2 id="other-sources">Other Sources</h2>
+<ul>
+<li><a href="https://www.jetbrains.com/help/idea/2016.1/getting-started-with-play-2-x.html?origin=old_help">Follow the handy JetBrains Play 2.X tutorial</a></li>
+<li><a href="https://github.com/playframework/playframework/tree/master/templates/play-scala-intro"><!-- raw HTML omitted --><!-- raw HTML omitted --> View or Clone the template</a></li>
+</ul>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/docker-swarm-arm-cluster/" rel="prev">Docker Swarm on ARM</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/handy-linux-snippets/" rel="next">Handy Linux Bash Snippets</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

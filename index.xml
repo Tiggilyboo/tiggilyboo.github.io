@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Simon Willshire</title>
+    <link>http://simonwillshire.com/</link>
+    <description>Recent content on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Sep 2021 09:28:00 +0100</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camper Power Monitoring: Part 2</title>
+      <link>http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/</guid>
+      <description>How about those Register Mappings? With much frustration in reverse engineering the modbus register mappings (days of different charge states and spreadsheets&amp;hellip;), thankfully a small community online has put forward a few registers! The registers did not turn out to be in the format I was expecting and required some bit shifting. So without further ado:&#xA;Taken from the github repo @ 49ae2434656, devices-lfp10s.h file:&#xA;#define LFP100S_REG_START 5042 // Offsets of addresses from LFP100S_REG_START #define LFP100S_REG_LOAD_A 0 // 5042 #define LFP100S_REG_VOLTAGE 1 // 5043 #define LFP100S_REG_CAPACITY_1 2 // 5044 #define LFP100S_REG_CAPACITY_2 3 // 5045 #define LFP100S_REG_MAX_CAPACITY_1 4 // 5046 #define LFP100S_REG_MAX_CAPACITY_2 5 // 5047 And the accompanying retreival from the unsigned int register array:</description>
+    </item>
+    <item>
+      <title>Camper Power Monitoring: Part 1</title>
+      <link>http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/</link>
+      <pubDate>Mon, 26 Jul 2021 18:38:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/</guid>
+      <description>What? Some of you may know that I have been converting a panel van into a camper over the past 9 months or so. As a part of building this, we opted to install a solar panel, and altenator charging to some leisure batteries.&#xA;So how do we go about tracking how much power we are bringing in, and consuming? Here begins my journey to displaying this information and more&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 4</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</guid>
+      <description>Hello everybody, a much delayed posting of this series (I completed the project January 12th or so&amp;hellip;), I&amp;rsquo;ve been travelling around the world at exactly the wrong time, but I thought since I&amp;rsquo;ve got the time to finally post the final part to this series, let&amp;rsquo;s get started!&#xA;The Case I was able to grab a friends dremel to modify the existing Aluminium Hi-Pro Planck case. Needed to widen the port area in order to fit the HDMI port, audio, and USB-C cabling in.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 3</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</guid>
+      <description>Intro Great it&amp;rsquo;s been 3 months, where the heck is my finished keyboard? Let&amp;rsquo;s get up to speed - I am curently typing this article with the new keyboard, without a case and a wonky ESC switch, but lets start at the beginning, from finishing Part 2:&#xA;We had a &amp;ldquo;working&amp;rdquo; interrupt firing and internal key events being issued to the SBC. We did not have external input mode via USB HID.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 2</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-2/</link>
+      <pubDate>Fri, 13 Sep 2019 21:49:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-2/</guid>
+      <description>Intro As a quick refresher from the first part in the series, I&amp;rsquo;m making a handwired keyboard which uses an altogether rediculous chinese knockoff 6 core monster SBC (The RK3399). Better yet, there are not enough GPIOs available on the board to handle the input matrix (12x4). Oh, and the case I want to use (from my current keyboard does not have enough vertical headroom to fit it, so I have to manually strip the taller components by hand so it has enough clearance.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 1</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-1/</link>
+      <pubDate>Wed, 16 Jan 2019 18:00:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-1/</guid>
+      <description>Idea So I&amp;rsquo;ve been typing on an ortholinear mechanical keyboard called the Planck for roughly 8 months, and have been thoroughly enjoying it. But I felt as though it could benefit from being a standalone linux board, offering wireless / bluetooth, HDMI, oh and a full linux distribution.&#xA;I&amp;rsquo;ve worked with the Odroid u3&amp;rsquo;s in the past, but only to set up a mpich cluster, beowolf or docker swarm cluster in university, but I never really got beyond the software side of things.</description>
+    </item>
+    <item>
+      <title>Automatic HTTPS Server using Caddy Reverse-Proxy on Google Kubernetes Engine</title>
+      <link>http://simonwillshire.com/blog/caddy-https-kubernetes/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/caddy-https-kubernetes/</guid>
+      <description>Easy HTTPS It has always frustrated me that even the largest companies like Microsoft have had HTTPS certificate renewal issues. With the invention of technologies like Let&amp;rsquo;s Encrypt people can finally not have to pay a fortune for certificates, and renew using its API. To make this process even easier, there are web server&amp;rsquo;s like Caddy that implement this for you. There is no excuse anymore, just do HTTPS from the start.</description>
+    </item>
+    <item>
+      <title>Hey, NativeScript!</title>
+      <link>http://simonwillshire.com/blog/nativescript/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/nativescript/</guid>
+      <description>Purpose Right, so you may have seen Ionic, or Cordova based hybrid mobile applications - But you ask yourself, is there a better way to write a cross-platform mobile application in native code without using browser based UI and rendering? Well, Telerik has been developing a solution called NativeSCript - It transpiles good old web code (JS, CSS) or the Angular/Typscript solution into native code. ie. Java (Android) and Swift/Objective C (iOS).</description>
+    </item>
+    <item>
+      <title>Build your own tiny debian docker image</title>
+      <link>http://simonwillshire.com/blog/docker-minimal-debian-image/</link>
+      <pubDate>Wed, 06 Sep 2017 12:08:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/docker-minimal-debian-image/</guid>
+      <description>Docker This guide assumes you know the basics to docker and assumes it has been installed. This guide will be using a debian variant host environment.&#xA;TL;DR If you can&amp;rsquo;t be bothered, you can grab my prebuilt 57MB base image by using:&#xA;$ docker pull tiggilyboo/base alternatively use it by creating a dockerfile:&#xA;FROM tiggilyboo/base RUN &amp;lt;some bash commands&amp;gt; CMD [&amp;#34;/bin/bash&amp;#34;] Why? So, no matter what you are hosting on a docker container, a typical image can include all sorts of unneccisary packages - paired with the fact that docker provides a unique overlay file system which is additive, there is no reason to include these packages.</description>
+    </item>
+    <item>
+      <title>In Tents</title>
+      <link>http://simonwillshire.com/music/in-tents/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/music/in-tents/</guid>
+      <description>Bit of writer&amp;rsquo;s block on my improv for a while. But here&amp;rsquo;s a little something on Barry I managed to sit down and play, on a rainy Sunday afternoon&amp;hellip;&#xA;Tuning is based on open D but dropped due to Baritone acoustics: A, E, A, C, E, A&#xA;Video Soundcloud </description>
+    </item>
+    <item>
+      <title>Hints of Spagbol</title>
+      <link>http://simonwillshire.com/music/hints-of-spagbol/</link>
+      <pubDate>Tue, 21 Mar 2017 20:29:00 +0500</pubDate>
+      <guid>http://simonwillshire.com/music/hints-of-spagbol/</guid>
+      <description>A delicious track tuned in A# F A# C G A# on Barry&#xA;Shoutout to the atmospheric seagull at 1:15 Soundcloud Video </description>
+    </item>
+    <item>
+      <title>WAPIQ: Web API Query Language</title>
+      <link>http://simonwillshire.com/blog/wapiq/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/wapiq/</guid>
+      <description>Open Sourced On Github Introduction After working on several project involving frequent web API interactions, including: response parsing and request assembling, you could say I&amp;rsquo;ve had enough of it&amp;hellip; So I wrote a library/query language in Golang which attempts to shorten the amount of time to map arbitrary JSON responses and setting up web API request behaviours.&#xA;What does it look like? I went for something of a hybrid between a query language like SQL, and that of a configuration or declarative format like JSON.</description>
+    </item>
+    <item>
+      <title>Yet Another Harmonic</title>
+      <link>http://simonwillshire.com/music/yet-another-harmonic/</link>
+      <pubDate>Sun, 29 Jan 2017 17:14:00 +0500</pubDate>
+      <guid>http://simonwillshire.com/music/yet-another-harmonic/</guid>
+      <description>Feels like it&amp;rsquo;s been a while since the last video&amp;hellip; Here&amp;rsquo;s some more baritone improv! Tuning: A#, F, A, C, F, A&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>A Barry Exploratorium</title>
+      <link>http://simonwillshire.com/music/a-barry-exploratorium/</link>
+      <pubDate>Mon, 19 Dec 2016 13:20:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/a-barry-exploratorium/</guid>
+      <description>Another installment of the much loved Barry improv. Tuning dropped into something a bit dreamy&amp;hellip;&#xA;Video </description>
+    </item>
+    <item>
+      <title>A Welly We Roam</title>
+      <link>http://simonwillshire.com/music/a-welly-we-roam/</link>
+      <pubDate>Fri, 25 Nov 2016 22:13:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/a-welly-we-roam/</guid>
+      <description>Standard baritone (B to B) tuning again! This time with some standard issue Wellington wind accompaniment.&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>A Barry Improv</title>
+      <link>http://simonwillshire.com/music/a-barry-improv/</link>
+      <pubDate>Sun, 30 Oct 2016 22:14:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/a-barry-improv/</guid>
+      <description>Purchased a baritone acoustic (Barry), here is a tad of improv trying it out after not able to play for a bit whilst travelling Australia and New Zealand. Tuning is dropped from baritone standard B-B to the following:&#xA;A, E, A, D, E, A&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Ionic 2 Framework - Integrating FCM Notifications</title>
+      <link>http://simonwillshire.com/blog/ionic-2-fcm-notifications/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/ionic-2-fcm-notifications/</guid>
+      <description>What? I don&amp;rsquo;t know man, you clicked this link, you tell me&amp;hellip;&#xA;Ionic? If you are unfamiliar with the Ionic framework, I&amp;rsquo;d start by checking out some of the docs and features before going through this. Essentially we will be using this framework to display content on a mobile platform (Android, iOS, WP), and be sending native notifications to the device via Firebase (A Google service for messaging, authentication, and a bunch of others).</description>
+    </item>
+    <item>
+      <title>Super Hasty Last Mix</title>
+      <link>http://simonwillshire.com/music/super-hasy-last-mix/</link>
+      <pubDate>Mon, 19 Sep 2016 16:26:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/super-hasy-last-mix/</guid>
+      <description>As some of you know I&amp;rsquo;m moving to the other side of the world&amp;hellip; So this is the last recording with this setup and guitar - And for once completely standard tuning (When does that ever happen&amp;hellip;).&#xA;Bits from &amp;ldquo;Something About Three Fingers&amp;rdquo;, and &amp;ldquo;Ebon Coast&amp;rdquo; (Andy Mckee), and some other improv bits.&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 3: Writing a Programming Language Parser (Nom)</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-3/</link>
+      <pubDate>Tue, 23 Aug 2016 22:53:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-3/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series.&#xA;Writing Your Own Programming Language parser So, recently I&amp;rsquo;ve been looking into improving/extending a Brainfuck interpreter that I wrote a while back to pick up a little more Rust and eventually write a full compiler. For the purpose of this article, I will be catering the parser towards capturing tokens that pertain to Brainfuck or an extended variant of it, however the concepts are largely the same.</description>
+    </item>
+    <item>
+      <title>A Slightly Hedges Improv</title>
+      <link>http://simonwillshire.com/music/a-slightly-hedges-improv/</link>
+      <pubDate>Sun, 31 Jul 2016 13:54:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/a-slightly-hedges-improv/</guid>
+      <description>CCDGAD (Aerial Boundaries - Michael Hedges) tuning Starting to learn a famous hedges song, here is some improv in the same tuning - Maybe I&amp;rsquo;ll get around to actually covering a song sometime&amp;hellip;&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 2: Vulkan API</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-2/</link>
+      <pubDate>Sun, 24 Jul 2016 14:54:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-2/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series. Vulkano recommends v1.9+ as of writing this article.&#xA;Vulkan API Part 2 will look at implementing a binding to the Vulkan API. I&amp;rsquo;m assuming an introduction to the graphics API is not needed, and goes without saying - It&amp;rsquo;s Khronos&amp;rsquo; new graphics API which is intended to replace OpenGL. So, for this post I&amp;rsquo;ll be setting up Vulkan 1.</description>
+    </item>
+    <item>
+      <title>Hello Fidelity</title>
+      <link>http://simonwillshire.com/music/hello-fidelity/</link>
+      <pubDate>Sun, 19 Jun 2016 15:25:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/hello-fidelity/</guid>
+      <description>Finally recorded something with the new recording equipment, here&amp;rsquo;s a little something I put together. Tuning as follows (Fret number to next open string): 3, 4, 12, 5, 3&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Upcoming Audio Improvements</title>
+      <link>http://simonwillshire.com/music/upcoming-audio-improvements/</link>
+      <pubDate>Sun, 29 May 2016 21:51:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/upcoming-audio-improvements/</guid>
+      <description>My Music Setup Hey internet, I&amp;rsquo;ve decided to write a post looking at some upcoming equipment I&amp;rsquo;ve purchased to finally get a decent sound for some of my acoustic guitar recordings (Currently horrible quality through my phone, so really anything else is an improvement). I&amp;rsquo;m writing this with a budget of 6-7 hundred CAD for everything from pickups to audio interface and software so here&amp;rsquo;s what I&amp;rsquo;ve put together so far!</description>
+    </item>
+    <item>
+      <title>Flamencish</title>
+      <link>http://simonwillshire.com/music/flamencish/</link>
+      <pubDate>Mon, 23 May 2016 15:20:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/flamencish/</guid>
+      <description>Some flamencish sort of improvisation - The usual process of finding a tuning, and experiment with patterns that go well together. Tuning from low to high, fret numbers indicate same note on next string: 7, 2, 7, 10, 4&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 1 (Setup: Atom, Racer)</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-1/</link>
+      <pubDate>Sat, 14 May 2016 13:06:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-1/</guid>
+      <description>Exploring Rust Everyone seems to be talking about Rust lately, so I&amp;rsquo;d thought I&amp;rsquo;d give it a shot and write something in it. The exploration begins with setting up the rust compiler (rustc), and setting up atom with various rust packages (linter, racer, and syntax highlighting).&#xA;Environment Setup Installing the Rust Compiler (rustc) Fetch the latest stable rust binaries (As of writing this 1.17.0):&#xA;$ curl https://sh.rustup.rs -sSf | sh Rust comes with a language package manager called Cargo, I will be using it to install a package called racer for auto completion in atom.</description>
+    </item>
+    <item>
+      <title>A Harmonic for Twelfth</title>
+      <link>http://simonwillshire.com/music/a-harmonic-for-twelfth/</link>
+      <pubDate>Sat, 07 May 2016 17:40:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/a-harmonic-for-twelfth/</guid>
+      <description>A somewhat improvised song, mostly smacking the 12th fret harmonics. Tuning is as follows (Fret number to next string open):&#xA;7, 3, 7, 4, 3 (Basically drop D tuning with high string also D?)&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Improvisation: A Tune in Another Tune</title>
+      <link>http://simonwillshire.com/music/a-tune-in-another-tune/</link>
+      <pubDate>Tue, 26 Apr 2016 20:00:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/a-tune-in-another-tune/</guid>
+      <description>Some improvisation on an odd tuning. Still without the use of my ring finger&amp;hellip;&#xA;Tuning as follows (By fret number above open string): 5, 7, 7, 5, 4&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Interrupted by a Motorcycle</title>
+      <link>http://simonwillshire.com/music/interrupted-by-a-motorcycle/</link>
+      <pubDate>Thu, 14 Apr 2016 19:24:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/interrupted-by-a-motorcycle/</guid>
+      <description>Interrupted by a motorcycle a minute and a half in, but here&amp;rsquo;s an odd tuning I&amp;rsquo;ve been playing on for a while!&#xA;Tuning Frets (Open to adjacent below): 5, 7, 5, 4, 3&#xA;Soundcloud No video this time, sorry folks.</description>
+    </item>
+    <item>
+      <title>Docker Swarm on ARM</title>
+      <link>http://simonwillshire.com/blog/docker-swarm-arm-cluster/</link>
+      <pubDate>Fri, 01 Apr 2016 18:16:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/docker-swarm-arm-cluster/</guid>
+      <description>Overview So, a couple years ago when I was studying my bachelors, I did a project for an operating systems course on the ARM big little architecture and scheduling algorithms (You can even read my final paper here). Fast forward a couple years, and I&amp;rsquo;ve still got some ARM boards floating around - After doing some reading into Docker Swarm, I thought I&amp;rsquo;d try it out without virtualizing everything on my main box.</description>
+    </item>
+    <item>
+      <title>Adventures In Scala - Part 1: play-scala-intro</title>
+      <link>http://simonwillshire.com/blog/adventures-in-scala-part-1/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/adventures-in-scala-part-1/</guid>
+      <description>Learning Scala Part 1 - play-scala-intro So, as of writing this, my background is primarily C#. This post is the first part of a series which will document my transition into all things Scala. I will be writing a step by step on creating a simple web stack.&#xA;My Setup I&amp;rsquo;ll be using Linux Mint 17.3, but most flavours of debian should work for any of my bash.&#xA;PostgreSQL 9.3.11 IntelliJ IDEA, targeting Open JDK 1.</description>
+    </item>
+    <item>
+      <title>Handy Linux Bash Snippets</title>
+      <link>http://simonwillshire.com/blog/handy-linux-snippets/</link>
+      <pubDate>Thu, 31 Mar 2016 11:35:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/handy-linux-snippets/</guid>
+      <description>Handy Linux Bash Snippets Always display nautilus (file browser) path (Usually triggered with Ctrl-L) $ gsettings set org.gnome.nautilus.preferences always-use-location-entry true Show an exported/external drives (For NFS) within a specified domain $ showmount -e &amp;lt;ip/host&amp;gt; Check if your kernel can run Docker properly (Handy for ARM boards) $ curl -L https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin /path/to/.config </description>
+    </item>
+    <item>
+      <title>Something About Three Fingers</title>
+      <link>http://simonwillshire.com/music/something-about-three-fingers/</link>
+      <pubDate>Sat, 12 Mar 2016 20:35:59 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/something-about-three-fingers/</guid>
+      <description>Progress towards a song I&amp;rsquo;m still working on, it seems to change everytime&amp;hellip; Like the last video, my finger is out of comission, so 3 fingers is where its at!&#xA;This time standard tuning, and a simple equilizer to cut down ambient noise.&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Two Finger Improv</title>
+      <link>http://simonwillshire.com/music/two-finger-improv/</link>
+      <pubDate>Mon, 29 Feb 2016 20:00:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/music/two-finger-improv/</guid>
+      <description>After a trip to New Zealand I had a finger out of commission, this has the capo and tuning to make up for that.&#xA;For those of you interested, its Open-D with the 3rd and 4th strings swapped with a capo on the fifth fret.&#xA;Soundcloud Video </description>
+    </item>
+    <item>
+      <title>Advanced Algorithms</title>
+      <link>http://simonwillshire.com/papers/advanced-algorithms/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/advanced-algorithms/</guid>
+      <description>Original Course Papers (2014) Here are a collection of papers I wrote for an advanced algorithms course (COIS-4050H) in 2014. Still remains to be the hardest course I&amp;rsquo;ve ever taken!&#xA;Selection / Median of Medians, Recursive Tiles, and Majority problems (PDF) Euclidian Travelling Salesman problem (PDF) </description>
+    </item>
+    <item>
+      <title>ARM Beowolf Cluster</title>
+      <link>http://simonwillshire.com/papers/odroid-arm-cluster/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/odroid-arm-cluster/</guid>
+      <description>Original Course Paper (2014) This paper was writted for an operating systems course (COIS-3320H) in 2014. It analyses the ARM big.LITTLE architecture and scheduling algorithms. The paper documents the steps in order to create an Odroid beowolf cluster (Single board ARM computers) and set up messaging using MPICH3 and a central NFS storage.&#xA;ARM Beowolf Cluster (PDF) </description>
+    </item>
+    <item>
+      <title>Efficient Parallelism</title>
+      <link>http://simonwillshire.com/papers/efficient-parallelism/</link>
+      <pubDate>Sat, 27 Feb 2016 15:37:18 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/efficient-parallelism/</guid>
+      <description>Original Course Paper (2015) This paper was written for a distributed computer course (COIS-4350H) in 2015. It analyses the Parallela architecture using ARM and it&amp;rsquo;s MIMD coprocessor (Epiphany).&#xA;Efficient Parallelism (PDF) </description>
+    </item>
+    <item>
+      <title>Linear Genetic Programming</title>
+      <link>http://simonwillshire.com/papers/linear-genetic-programming/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/papers/linear-genetic-programming/</guid>
+      <description>Original Course Paper (2014) This paper was written for an artificial intelligence course (COIS-4550H) in 2014. It examines a self-programming program using genetic algorithm techniques (with a fitness evaluation).&#xA;Linear Genetic Programming (PDF) </description>
+    </item>
+    <item>
+      <title>The site is live!</title>
+      <link>http://simonwillshire.com/blog/test/</link>
+      <pubDate>Tue, 23 Feb 2016 17:01:22 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/test/</guid>
+      <description>Welcome to the first blog post! Hey! This is the first blog post on the site, I leave it here as a timestamp of site creation&amp;hellip; Really not much to see here, moving on.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://simonwillshire.com/about/</link>
+      <pubDate>Sun, 21 Feb 2016 22:10:06 -0500</pubDate>
+      <guid>http://simonwillshire.com/about/</guid>
+      <description>Hello there! If you haven&amp;rsquo;t guessed by the site name, my name is Simon Willshire. I&amp;rsquo;ve worked for a few software companies; creating and designing new solutions, migrating large legacy applications, as well as maintaining existing ones. This site will hope to track my technological discoveries and thoughts along the way. I posted some of my undergrad papers that I&amp;rsquo;ve written during my degree, as well as any research that I&amp;rsquo;ve been doing in my spare time.</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://simonwillshire.com/contact/</link>
+      <pubDate>Mon, 22 Feb 2016 00:00:00 +0000</pubDate>
+      <guid>http://simonwillshire.com/contact/</guid>
+      <description>Contact Me Most posts on this site are open to public comments through Disqus integration, however you can also contact me in the following ways:&#xA;me@simonwillshire.com @Tiggilyboo </description>
+    </item>
+  </channel>
+</rss>

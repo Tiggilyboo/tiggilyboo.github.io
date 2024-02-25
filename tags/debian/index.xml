@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debian on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/debian/</link>
+    <description>Recent content in Debian on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Sep 2017 12:08:00 -1200</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build your own tiny debian docker image</title>
+      <link>http://simonwillshire.com/blog/docker-minimal-debian-image/</link>
+      <pubDate>Wed, 06 Sep 2017 12:08:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/docker-minimal-debian-image/</guid>
+      <description>Docker This guide assumes you know the basics to docker and assumes it has been installed. This guide will be using a debian variant host environment.&#xA;TL;DR If you can&amp;rsquo;t be bothered, you can grab my prebuilt 57MB base image by using:&#xA;$ docker pull tiggilyboo/base alternatively use it by creating a dockerfile:&#xA;FROM tiggilyboo/base RUN &amp;lt;some bash commands&amp;gt; CMD [&amp;#34;/bin/bash&amp;#34;] Why? So, no matter what you are hosting on a docker container, a typical image can include all sorts of unneccisary packages - paired with the fact that docker provides a unique overlay file system which is additive, there is no reason to include these packages.</description>
+    </item>
+  </channel>
+</rss>

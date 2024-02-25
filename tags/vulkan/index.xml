@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vulkan on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/vulkan/</link>
+    <description>Recent content in Vulkan on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jul 2016 14:54:00 -0400</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/vulkan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploring Rust - Part 2: Vulkan API</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-2/</link>
+      <pubDate>Sun, 24 Jul 2016 14:54:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-2/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series. Vulkano recommends v1.9+ as of writing this article.&#xA;Vulkan API Part 2 will look at implementing a binding to the Vulkan API. I&amp;rsquo;m assuming an introduction to the graphics API is not needed, and goes without saying - It&amp;rsquo;s Khronos&amp;rsquo; new graphics API which is intended to replace OpenGL. So, for this post I&amp;rsquo;ll be setting up Vulkan 1.</description>
+    </item>
+  </channel>
+</rss>

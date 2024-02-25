@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GKE on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/gke/</link>
+    <description>Recent content in GKE on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Feb 2018 16:42:00 +1300</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/gke/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatic HTTPS Server using Caddy Reverse-Proxy on Google Kubernetes Engine</title>
+      <link>http://simonwillshire.com/blog/caddy-https-kubernetes/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/caddy-https-kubernetes/</guid>
+      <description>Easy HTTPS It has always frustrated me that even the largest companies like Microsoft have had HTTPS certificate renewal issues. With the invention of technologies like Let&amp;rsquo;s Encrypt people can finally not have to pay a fortune for certificates, and renew using its API. To make this process even easier, there are web server&amp;rsquo;s like Caddy that implement this for you. There is no excuse anymore, just do HTTPS from the start.</description>
+    </item>
+  </channel>
+</rss>

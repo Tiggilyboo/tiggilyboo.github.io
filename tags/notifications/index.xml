@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notifications on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/notifications/</link>
+    <description>Recent content in Notifications on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Oct 2016 05:55:00 -1200</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/notifications/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ionic 2 Framework - Integrating FCM Notifications</title>
+      <link>http://simonwillshire.com/blog/ionic-2-fcm-notifications/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/ionic-2-fcm-notifications/</guid>
+      <description>What? I don&amp;rsquo;t know man, you clicked this link, you tell me&amp;hellip;&#xA;Ionic? If you are unfamiliar with the Ionic framework, I&amp;rsquo;d start by checking out some of the docs and features before going through this. Essentially we will be using this framework to display content on a mobile platform (Android, iOS, WP), and be sending native notifications to the device via Firebase (A Google service for messaging, authentication, and a bunch of others).</description>
+    </item>
+  </channel>
+</rss>

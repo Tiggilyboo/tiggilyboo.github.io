@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Simon Willshire</title>
+    <link>http://simonwillshire.com/topics/blog/</link>
+    <description>Recent content in Blog on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Sep 2021 09:28:00 +0100</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/topics/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camper Power Monitoring: Part 2</title>
+      <link>http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/</guid>
+      <description>How about those Register Mappings? With much frustration in reverse engineering the modbus register mappings (days of different charge states and spreadsheets&amp;hellip;), thankfully a small community online has put forward a few registers! The registers did not turn out to be in the format I was expecting and required some bit shifting. So without further ado:&#xA;Taken from the github repo @ 49ae2434656, devices-lfp10s.h file:&#xA;#define LFP100S_REG_START 5042 // Offsets of addresses from LFP100S_REG_START #define LFP100S_REG_LOAD_A 0 // 5042 #define LFP100S_REG_VOLTAGE 1 // 5043 #define LFP100S_REG_CAPACITY_1 2 // 5044 #define LFP100S_REG_CAPACITY_2 3 // 5045 #define LFP100S_REG_MAX_CAPACITY_1 4 // 5046 #define LFP100S_REG_MAX_CAPACITY_2 5 // 5047 And the accompanying retreival from the unsigned int register array:</description>
+    </item>
+    <item>
+      <title>Camper Power Monitoring: Part 1</title>
+      <link>http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/</link>
+      <pubDate>Mon, 26 Jul 2021 18:38:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/</guid>
+      <description>What? Some of you may know that I have been converting a panel van into a camper over the past 9 months or so. As a part of building this, we opted to install a solar panel, and altenator charging to some leisure batteries.&#xA;So how do we go about tracking how much power we are bringing in, and consuming? Here begins my journey to displaying this information and more&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 4</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</guid>
+      <description>Hello everybody, a much delayed posting of this series (I completed the project January 12th or so&amp;hellip;), I&amp;rsquo;ve been travelling around the world at exactly the wrong time, but I thought since I&amp;rsquo;ve got the time to finally post the final part to this series, let&amp;rsquo;s get started!&#xA;The Case I was able to grab a friends dremel to modify the existing Aluminium Hi-Pro Planck case. Needed to widen the port area in order to fit the HDMI port, audio, and USB-C cabling in.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 3</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</guid>
+      <description>Intro Great it&amp;rsquo;s been 3 months, where the heck is my finished keyboard? Let&amp;rsquo;s get up to speed - I am curently typing this article with the new keyboard, without a case and a wonky ESC switch, but lets start at the beginning, from finishing Part 2:&#xA;We had a &amp;ldquo;working&amp;rdquo; interrupt firing and internal key events being issued to the SBC. We did not have external input mode via USB HID.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 2</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-2/</link>
+      <pubDate>Fri, 13 Sep 2019 21:49:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-2/</guid>
+      <description>Intro As a quick refresher from the first part in the series, I&amp;rsquo;m making a handwired keyboard which uses an altogether rediculous chinese knockoff 6 core monster SBC (The RK3399). Better yet, there are not enough GPIOs available on the board to handle the input matrix (12x4). Oh, and the case I want to use (from my current keyboard does not have enough vertical headroom to fit it, so I have to manually strip the taller components by hand so it has enough clearance.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 1</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-1/</link>
+      <pubDate>Wed, 16 Jan 2019 18:00:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-1/</guid>
+      <description>Idea So I&amp;rsquo;ve been typing on an ortholinear mechanical keyboard called the Planck for roughly 8 months, and have been thoroughly enjoying it. But I felt as though it could benefit from being a standalone linux board, offering wireless / bluetooth, HDMI, oh and a full linux distribution.&#xA;I&amp;rsquo;ve worked with the Odroid u3&amp;rsquo;s in the past, but only to set up a mpich cluster, beowolf or docker swarm cluster in university, but I never really got beyond the software side of things.</description>
+    </item>
+    <item>
+      <title>Automatic HTTPS Server using Caddy Reverse-Proxy on Google Kubernetes Engine</title>
+      <link>http://simonwillshire.com/blog/caddy-https-kubernetes/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/caddy-https-kubernetes/</guid>
+      <description>Easy HTTPS It has always frustrated me that even the largest companies like Microsoft have had HTTPS certificate renewal issues. With the invention of technologies like Let&amp;rsquo;s Encrypt people can finally not have to pay a fortune for certificates, and renew using its API. To make this process even easier, there are web server&amp;rsquo;s like Caddy that implement this for you. There is no excuse anymore, just do HTTPS from the start.</description>
+    </item>
+    <item>
+      <title>Hey, NativeScript!</title>
+      <link>http://simonwillshire.com/blog/nativescript/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/nativescript/</guid>
+      <description>Purpose Right, so you may have seen Ionic, or Cordova based hybrid mobile applications - But you ask yourself, is there a better way to write a cross-platform mobile application in native code without using browser based UI and rendering? Well, Telerik has been developing a solution called NativeSCript - It transpiles good old web code (JS, CSS) or the Angular/Typscript solution into native code. ie. Java (Android) and Swift/Objective C (iOS).</description>
+    </item>
+    <item>
+      <title>Build your own tiny debian docker image</title>
+      <link>http://simonwillshire.com/blog/docker-minimal-debian-image/</link>
+      <pubDate>Wed, 06 Sep 2017 12:08:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/docker-minimal-debian-image/</guid>
+      <description>Docker This guide assumes you know the basics to docker and assumes it has been installed. This guide will be using a debian variant host environment.&#xA;TL;DR If you can&amp;rsquo;t be bothered, you can grab my prebuilt 57MB base image by using:&#xA;$ docker pull tiggilyboo/base alternatively use it by creating a dockerfile:&#xA;FROM tiggilyboo/base RUN &amp;lt;some bash commands&amp;gt; CMD [&amp;#34;/bin/bash&amp;#34;] Why? So, no matter what you are hosting on a docker container, a typical image can include all sorts of unneccisary packages - paired with the fact that docker provides a unique overlay file system which is additive, there is no reason to include these packages.</description>
+    </item>
+    <item>
+      <title>WAPIQ: Web API Query Language</title>
+      <link>http://simonwillshire.com/blog/wapiq/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/wapiq/</guid>
+      <description>Open Sourced On Github Introduction After working on several project involving frequent web API interactions, including: response parsing and request assembling, you could say I&amp;rsquo;ve had enough of it&amp;hellip; So I wrote a library/query language in Golang which attempts to shorten the amount of time to map arbitrary JSON responses and setting up web API request behaviours.&#xA;What does it look like? I went for something of a hybrid between a query language like SQL, and that of a configuration or declarative format like JSON.</description>
+    </item>
+    <item>
+      <title>Ionic 2 Framework - Integrating FCM Notifications</title>
+      <link>http://simonwillshire.com/blog/ionic-2-fcm-notifications/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/blog/ionic-2-fcm-notifications/</guid>
+      <description>What? I don&amp;rsquo;t know man, you clicked this link, you tell me&amp;hellip;&#xA;Ionic? If you are unfamiliar with the Ionic framework, I&amp;rsquo;d start by checking out some of the docs and features before going through this. Essentially we will be using this framework to display content on a mobile platform (Android, iOS, WP), and be sending native notifications to the device via Firebase (A Google service for messaging, authentication, and a bunch of others).</description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 3: Writing a Programming Language Parser (Nom)</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-3/</link>
+      <pubDate>Tue, 23 Aug 2016 22:53:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-3/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series.&#xA;Writing Your Own Programming Language parser So, recently I&amp;rsquo;ve been looking into improving/extending a Brainfuck interpreter that I wrote a while back to pick up a little more Rust and eventually write a full compiler. For the purpose of this article, I will be catering the parser towards capturing tokens that pertain to Brainfuck or an extended variant of it, however the concepts are largely the same.</description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 2: Vulkan API</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-2/</link>
+      <pubDate>Sun, 24 Jul 2016 14:54:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-2/</guid>
+      <description>Rust I assume you have already installed it, if not check out the first part of the series. Vulkano recommends v1.9+ as of writing this article.&#xA;Vulkan API Part 2 will look at implementing a binding to the Vulkan API. I&amp;rsquo;m assuming an introduction to the graphics API is not needed, and goes without saying - It&amp;rsquo;s Khronos&amp;rsquo; new graphics API which is intended to replace OpenGL. So, for this post I&amp;rsquo;ll be setting up Vulkan 1.</description>
+    </item>
+    <item>
+      <title>Exploring Rust - Part 1 (Setup: Atom, Racer)</title>
+      <link>http://simonwillshire.com/blog/series/exploring-rust/part-1/</link>
+      <pubDate>Sat, 14 May 2016 13:06:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/series/exploring-rust/part-1/</guid>
+      <description>Exploring Rust Everyone seems to be talking about Rust lately, so I&amp;rsquo;d thought I&amp;rsquo;d give it a shot and write something in it. The exploration begins with setting up the rust compiler (rustc), and setting up atom with various rust packages (linter, racer, and syntax highlighting).&#xA;Environment Setup Installing the Rust Compiler (rustc) Fetch the latest stable rust binaries (As of writing this 1.17.0):&#xA;$ curl https://sh.rustup.rs -sSf | sh Rust comes with a language package manager called Cargo, I will be using it to install a package called racer for auto completion in atom.</description>
+    </item>
+    <item>
+      <title>Docker Swarm on ARM</title>
+      <link>http://simonwillshire.com/blog/docker-swarm-arm-cluster/</link>
+      <pubDate>Fri, 01 Apr 2016 18:16:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/docker-swarm-arm-cluster/</guid>
+      <description>Overview So, a couple years ago when I was studying my bachelors, I did a project for an operating systems course on the ARM big little architecture and scheduling algorithms (You can even read my final paper here). Fast forward a couple years, and I&amp;rsquo;ve still got some ARM boards floating around - After doing some reading into Docker Swarm, I thought I&amp;rsquo;d try it out without virtualizing everything on my main box.</description>
+    </item>
+    <item>
+      <title>Adventures In Scala - Part 1: play-scala-intro</title>
+      <link>http://simonwillshire.com/blog/adventures-in-scala-part-1/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/blog/adventures-in-scala-part-1/</guid>
+      <description>Learning Scala Part 1 - play-scala-intro So, as of writing this, my background is primarily C#. This post is the first part of a series which will document my transition into all things Scala. I will be writing a step by step on creating a simple web stack.&#xA;My Setup I&amp;rsquo;ll be using Linux Mint 17.3, but most flavours of debian should work for any of my bash.&#xA;PostgreSQL 9.3.11 IntelliJ IDEA, targeting Open JDK 1.</description>
+    </item>
+    <item>
+      <title>Handy Linux Bash Snippets</title>
+      <link>http://simonwillshire.com/blog/handy-linux-snippets/</link>
+      <pubDate>Thu, 31 Mar 2016 11:35:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/handy-linux-snippets/</guid>
+      <description>Handy Linux Bash Snippets Always display nautilus (file browser) path (Usually triggered with Ctrl-L) $ gsettings set org.gnome.nautilus.preferences always-use-location-entry true Show an exported/external drives (For NFS) within a specified domain $ showmount -e &amp;lt;ip/host&amp;gt; Check if your kernel can run Docker properly (Handy for ARM boards) $ curl -L https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin /path/to/.config </description>
+    </item>
+    <item>
+      <title>The site is live!</title>
+      <link>http://simonwillshire.com/blog/test/</link>
+      <pubDate>Tue, 23 Feb 2016 17:01:22 -0500</pubDate>
+      <guid>http://simonwillshire.com/blog/test/</guid>
+      <description>Welcome to the first blog post! Hey! This is the first blog post on the site, I leave it here as a timestamp of site creation&amp;hellip; Really not much to see here, moving on.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://simonwillshire.com/about/</link>
+      <pubDate>Sun, 21 Feb 2016 22:10:06 -0500</pubDate>
+      <guid>http://simonwillshire.com/about/</guid>
+      <description>Hello there! If you haven&amp;rsquo;t guessed by the site name, my name is Simon Willshire. I&amp;rsquo;ve worked for a few software companies; creating and designing new solutions, migrating large legacy applications, as well as maintaining existing ones. This site will hope to track my technological discoveries and thoughts along the way. I posted some of my undergrad papers that I&amp;rsquo;ve written during my degree, as well as any research that I&amp;rsquo;ve been doing in my spare time.</description>
+    </item>
+  </channel>
+</rss>

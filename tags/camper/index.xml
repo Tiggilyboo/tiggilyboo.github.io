@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Camper on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/camper/</link>
+    <description>Recent content in Camper on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Sep 2021 09:28:00 +0100</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/camper/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camper Power Monitoring: Part 2</title>
+      <link>http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/blog/series/camper-power-monitoring/part-2/</guid>
+      <description>How about those Register Mappings? With much frustration in reverse engineering the modbus register mappings (days of different charge states and spreadsheets&amp;hellip;), thankfully a small community online has put forward a few registers! The registers did not turn out to be in the format I was expecting and required some bit shifting. So without further ado:&#xA;Taken from the github repo @ 49ae2434656, devices-lfp10s.h file:&#xA;#define LFP100S_REG_START 5042 // Offsets of addresses from LFP100S_REG_START #define LFP100S_REG_LOAD_A 0 // 5042 #define LFP100S_REG_VOLTAGE 1 // 5043 #define LFP100S_REG_CAPACITY_1 2 // 5044 #define LFP100S_REG_CAPACITY_2 3 // 5045 #define LFP100S_REG_MAX_CAPACITY_1 4 // 5046 #define LFP100S_REG_MAX_CAPACITY_2 5 // 5047 And the accompanying retreival from the unsigned int register array:</description>
+    </item>
+    <item>
+      <title>Camper Power Monitoring: Part 1</title>
+      <link>http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/</link>
+      <pubDate>Mon, 26 Jul 2021 18:38:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/</guid>
+      <description>What? Some of you may know that I have been converting a panel van into a camper over the past 9 months or so. As a part of building this, we opted to install a solar panel, and altenator charging to some leisure batteries.&#xA;So how do we go about tracking how much power we are bringing in, and consuming? Here begins my journey to displaying this information and more&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

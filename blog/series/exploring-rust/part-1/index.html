@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Started taking a look at what all the hype was about with Rust!">
+
+    <title>Exploring Rust - Part 1 (Setup: Atom, Racer)</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../../../">Home</a>
+          <a href="../../../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../../../music">Music</a>
+          <a href="../../../../contact">Contact</a>
+          <a href="../../../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Exploring Rust - Part 1 (Setup: Atom, Racer)</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          May 14, 2016
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../../../tags/programming">Programming</a>&nbsp;
+        
+          <a href="../../../../tags/rust">Rust</a>&nbsp;
+        
+          <a href="../../../../tags/compiler">Compiler</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+      
+        This article is part of the series 
+        
+          <a href="../../../../series/exploring-rust">Exploring Rust</a></li>
+         
+       
+    </div>
+
+    <article>
+            <h2 id="exploring-rust">Exploring Rust</h2>
+<p>Everyone seems to be talking about Rust lately, so I&rsquo;d thought I&rsquo;d give it a shot and write something in it. The exploration begins with setting up the rust compiler (rustc), and setting up atom with various rust packages (linter, racer, and syntax highlighting).</p>
+<h3 id="environment-setup">Environment Setup</h3>
+<h4 id="installing-the-rust-compiler-rustc">Installing the Rust Compiler (rustc)</h4>
+<p>Fetch the latest stable rust binaries (As of writing this 1.17.0):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl https://sh.rustup.rs -sSf | sh
+</span></span></code></pre></div><p>Rust comes with a language package manager called Cargo, I will be using it to install a package called <a href="https://github.com/phildawes/racer">racer</a> for auto completion in <a href="https://atom.io/">atom</a>.</p>
+<h4 id="installing-racer">Installing Racer</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ export PATH<span style="color:#f92672">=</span>$PATH:/home/$USER/.cargo/bin
+</span></span><span style="display:flex;"><span>$ cargo install racer
+</span></span></code></pre></div><h4 id="atom-packages">Atom Packages</h4>
+<ul>
+<li><a href="https://atom.io/packages/language-rust">language-rust</a></li>
+<li><a href="https://atom.io/packages/linter-rust">linter-rust</a></li>
+<li><a href="https://atom.io/packages/racer">racer</a></li>
+</ul>
+<p><strong>Package Configuration:</strong>
+Racer requires <code>RUST_SRC_PATH</code> to be set to the location of your rust source, which can be downloaded and set like the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/rust-lang/rust.git
+</span></span><span style="display:flex;"><span>$ export RUST_SRC_PATH<span style="color:#f92672">=</span>/home/$USER/rust/src
+</span></span></code></pre></div><p>&ldquo;Ok, so I&rsquo;ve opened a new <code>.rs</code> file and now its throwing errors at me!&rdquo; - Make sure you&rsquo;ve set the correct paths in Atom&rsquo;s racer package, so just <code>Ctrl+,</code>, open the racer package, and set the paths. Mine are the following:</p>
+<p><img src="http://i.imgur.com/c6VnjVi.jpg" alt="Rust Racer Package Configuration"></p>
+<p>And to test it out in your new rust source file, try out <code>std::</code> you should get some auto complete!</p>
+<p><img src="http://i.imgur.com/tm2eeXU.jpg" alt="Rust in Atom using Racer"></p>
+<h3 id="writing-rust">Writing Rust</h3>
+<p>If you&rsquo;re used to higher level languages, rust might be slightly daunting - Then again it&rsquo;s probably not as bad as learning C/C++ the first time&hellip;</p>
+<p>You can sometimes get helpful information using</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rustc --explain EXXXX
+</span></span></code></pre></div><p>Alternatively, the official <a href="https://doc.rust-lang.org/error-index.html">webified version</a>.</p>
+<p>Happy rusting! Check out my other <a href="http://simonwillshire.com/public/tags/rust/">rust articles</a></p>
+<h3 id="further-reading">Further Reading</h3>
+<ul>
+<li><a href="http://doc.rust-lang.org/book/getting-started.html">Official Rust Documentation: Getting Started</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rust_(programming_language)">Rust Wiki</a></li>
+</ul>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/series/exploring-rust/part-2/" rel="prev">Exploring Rust - Part 2: Vulkan API</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/docker-swarm-arm-cluster/" rel="next">Docker Swarm on ARM</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

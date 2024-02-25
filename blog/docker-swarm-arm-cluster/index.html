@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Steps to set up Docker and Docker Swarm on ARM boards">
+
+    <title>Docker Swarm on ARM</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../">Home</a>
+          <a href="../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../music">Music</a>
+          <a href="../../contact">Contact</a>
+          <a href="../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/scala.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/brainfuck.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/yaml.min.js"></script>
+<script type="text/javascript">
+  hljs.registerLanguage("wapiq",function(a){var b=a.C("#","$");return{cI:!0,i:/[\[\] {}#]/,c:[{bK:"API GET POST MAP FOR WHERE",e:/;/,eW:!0,l:/[\w\.]+/,k:{keyword:"/ API GET POST MAP FOR WHERE",literal:"args path type head query args"},c:[{cN:"attr",b:'"',e:'"',c:[a.BE,{b:"\\\\."}]},{cN:"string",b:"`",e:"`",c:[a.BE,{b:"\\\\."}]},a.CNM,a.CBCM,b]},{cN:"type",b:'"',e:'"',c:[a.BE,{b:"\\\\."}]},{bK:"/",cN:"attr",b:".",e:"FOR",c:[a.BE,{b:"\\\\."}]},{cN:"string",b:"`",e:"`",c:[a.BE,{b:"\\\\."}]},a.CBCM,b]}});
+</script>
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Docker Swarm on ARM</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Apr 1, 2016
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../tags/docker">Docker</a>&nbsp;
+        
+          <a href="../../tags/arm">ARM</a>&nbsp;
+        
+          <a href="../../tags/docker-swarm">Docker Swarm</a>&nbsp;
+        
+          <a href="../../tags/golang">golang</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+       
+    </div>
+
+    <article>
+            <!-- raw HTML omitted -->
+<h2 id="overview">Overview</h2>
+<p>So, a couple years ago when I was studying my bachelors, I did a project for an operating systems course on the ARM big little architecture and scheduling algorithms (You can even read my final paper <a href="http://simonwillshire.com/files/OS_ARM_Cluster.pdf">here</a>). Fast forward a couple years, and I&rsquo;ve still got some ARM boards floating around - After doing some reading into Docker Swarm, I thought I&rsquo;d try it out without virtualizing everything on my main box. This guide documents more or less my steps to create a working swarm&hellip;</p>
+<p>First off, this guide assumes that all nodes are,</p>
+<ul>
+<li>Networked, and have been identified by hostnames, and have SSH keys set up: recommend using a fairly fast but cheap backbone, like GB ethernet.</li>
+<li>ARM arch of course&hellip;</li>
+</ul>
+<h2 id="tldr-just-give-me-the-tars">TL;DR; Just give me the tar&rsquo;s!</h2>
+<ul>
+<li>Docker Machine 0.4.1 Linux ARMv7 <strong><a href="https://bitbucket.org/tiggilyboo/website/downloads/docker-machine.0.4.1.tar.gz">tar.gz</a></strong></li>
+<li>Go 1.4.3 Linux ARMv7 (Bootstrap to build 1.5.2) <strong><a href="https://bitbucket.org/tiggilyboo/website/downloads/go1.4.3.linux-armv7.tar.gz">tar.gz</a></strong></li>
+<li>Go 1.5.2 Linux ARMv7 (To build Docker Swarm) <strong><a href="https://bitbucket.org/tiggilyboo/website/downloads/go1.5.2.linux-armv7.tar.gz">tar.gz</a></strong></li>
+<li>Docker Swarm Linux ARMv7 Container <strong><a href="https://bitbucket.org/tiggilyboo/website/downloads/swarm.linux-armv7.tar.gz">tar.gz</a></strong></li>
+<li>Docker Alpine Linux ARMv7 Image <strong><a href="https://bitbucket.org/tiggilyboo/website/downloads/alpine.linux-armv7.tar.gz">tar.gz</a></strong></li>
+</ul>
+<p>Once you&rsquo;ve got docker running, you may pull directly from dockerhub; the Hypriot packages should work (Build for Raspberry Pi&rsquo;s).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker pull hypriot/rpi-swarm
+</span></span><span style="display:flex;"><span>$ docker pull hypriot/rpi-alpine-scratch
+</span></span></code></pre></div><h2 id="guide">Guide</h2>
+<p>Here are the steps I took to set up an ARMv7 cluster using <a href="https://github.com/docker/swarm">Docker Swarm</a>.</p>
+<p>I&rsquo;m using <a href="http://www.hardkernel.com/main/products/prdt_info.php?g_code=g138745696275">ODroid U3&rsquo;s</a> for this example, which have the necessary kernel flags set to properly run Docker. To check if your kernel has the required flags, run the following before going any further:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -L https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin /path/to/.config
+</span></span></code></pre></div><p><em>Check that the necessary flags are green, and that any vicious red ones are in the optional section.</em></p>
+<h3 id="installing-docker">Installing Docker</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get install lxc aufs-tools cgroup-lite apparmor docker.io
+</span></span></code></pre></div><h3 id="arm-docker-images">ARM Docker Images</h3>
+<p>I&rsquo;ve used <a href="https://hub.docker.com/r/hypriot/rpi-alpine-scratch/">this alpine</a> armhf image for my containers. However, you can find your own using: <code>docker search armhf-</code>, or <code>docker search hypriot</code></p>
+<p>and then pull the one you like, and test that it runs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker pull hypriot/rpi-alpine-scratch
+</span></span><span style="display:flex;"><span>$ docker run --rm hypriot/rpi-alpine-scratch echo <span style="color:#e6db74">&#39;image works!&#39;</span>
+</span></span></code></pre></div><h3 id="leader-nfs-for-images--containers-optional">Leader NFS for Images &amp; Containers (Optional)</h3>
+<p>Since the ARM boards typically do not have much storage capacity and typically are running on slow class 10 SD cards, I&rsquo;ve decided to run the leader node attached to a SSD.</p>
+<h4 id="ssd-host-on-leader-node">SSD Host on leader node</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get install nfs-kernel-server
+</span></span><span style="display:flex;"><span>$ nano /etc/exports
+</span></span><span style="display:flex;"><span>$ nano /etc/fstab
+</span></span><span style="display:flex;"><span>$ mount -a
+</span></span></code></pre></div><p>Enter your domain and mount points in the exports, and the fstab entry to local mount point in the config.</p>
+<h4 id="client-node-nfs-mount">Client Node NFS mount</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get install nfs-common
+</span></span><span style="display:flex;"><span>$ showmount -e &lt;ip/hostname of leader&gt;
+</span></span><span style="display:flex;"><span>$ nano /etc/fstab
+</span></span><span style="display:flex;"><span>$ mount -a
+</span></span></code></pre></div><p>Ensure the leader nodes nfs is visible, then enter the fstab entry with the &rsquo;nfs&rsquo; storage type.</p>
+<p>Now you should be able to use the -v flag when using docker images/containers; but make sure to only use one image per node.</p>
+<h3 id="building-docker-swarm">Building Docker Swarm</h3>
+<p>Since Docker Swarm does not have any ARM builds, we have to build it from source. It requires Golang 1.4 and later, so let&rsquo;s set that up&hellip;</p>
+<h4 id="build-golang-14-to-bootstrap-golang-15">Build Golang 1.4 to bootstrap Golang 1.5</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get remove golang
+</span></span><span style="display:flex;"><span>$ rm -fr /usr/local/go
+</span></span><span style="display:flex;"><span>$ curl -O https://storage.googleapis.com/golang/go1.4.3.src.tar.gz
+</span></span><span style="display:flex;"><span>$ tar -xzf go1.4.3.src.tar.gz -C /usr/local go
+</span></span><span style="display:flex;"><span>$ mv /usr/local/go /usr/local/go1.4
+</span></span><span style="display:flex;"><span>$ cd /usr/local/go1.4/src
+</span></span><span style="display:flex;"><span>$ time sudo ./make.bash
+</span></span><span style="display:flex;"><span>$ tar --numeric-owner -czf ~/go1.4.3.linux-armv7.tar.gz -C /usr/local go
+</span></span></code></pre></div><p>This may take some time depending on your board&rsquo;s performance (The odroid U3&rsquo;s took roughly 3.5 minutes)&hellip; Next up, we package go into a tarball, and use it to bootstrap golang 1.5.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rm -rf /usr/share/go
+</span></span><span style="display:flex;"><span>$ tar -xzf ~/go1.4.3.linux-armv7.tar.gz -C ~/go1.4 --strip-components<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>$ curl -sSL https://storage.googleapis.com/golang/go1.5.2.src.tar.gz | sudo tar -xz -C /usr/local
+</span></span><span style="display:flex;"><span>$ cd /usr/local/go/src
+</span></span><span style="display:flex;"><span>$ time sudo GOROOT_BOOTSTRAP<span style="color:#f92672">=</span>$HOME/go1.4 ./make.bash
+</span></span><span style="display:flex;"><span>$ tar --numeric-owner -czf ~/go1.5.2.linux-armv7.tar.gz -C /usr/local go
+</span></span></code></pre></div><p><em>Pheeeeww</em>, we now have Go 1.5 to build Docker Swarm. Just install it like normal go:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rm -fr /usr/local/go
+</span></span><span style="display:flex;"><span>$ tar -xzf ~/go1.5.2.linux-armv7.tar.gz -C /usr/local
+</span></span><span style="display:flex;"><span>$ export PATH<span style="color:#f92672">=</span>$PATH:/usr/local/go/bin
+</span></span><span style="display:flex;"><span>$ go version
+</span></span></code></pre></div><h4 id="build-docker-swarm-finally">Build Docker Swarm (Finally!)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ go get github.com/tools/godep
+</span></span><span style="display:flex;"><span>$ mkdir -p ~/go/src/github.com/docker
+</span></span><span style="display:flex;"><span>$ cd ~/go/src/github.com/docker/
+</span></span><span style="display:flex;"><span>$ git clone https://github.com/docker/swarm
+</span></span><span style="display:flex;"><span>$ cd swarm
+</span></span><span style="display:flex;"><span>$ ~/go/bin/godep go install -v -a -tags netgo -installsuffix netgo -ldflags <span style="color:#e6db74">&#39;-extldflags &#34;static&#34; -s&#39;</span> .
+</span></span></code></pre></div><p>This should spit out a swarm binary at <code>~/go/bin/swarm</code>.</p>
+<h4 id="deploy-docker-swarm-to-all-nodes">Deploy Docker Swarm To All Nodes</h4>
+<p>Now that we have Docker Swarm built, we need to install in on each of our nodes. What better way to do this that create a Dockerfile! Create a new file at <code>~/go/bin/Dockerfile</code> with the following contents:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> cratch</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./swarm /swarm<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> SWARM_HOST :2375<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 2375</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">VOLUME</span><span style="color:#e6db74"> $HOME/.swarm</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/swarm&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;--help&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><strong>Note:</strong> If you are confused as to what this does, check out the official <strong><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a></strong>.</p>
+<p>Now package it up, and send it to each of your nodes. If you set up an NFS drive for your cluster, you could use it as a central access point for Docker data should you be worried about image/container storage (It gets huge, especially on small capacity SD cards).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/go/bin
+</span></span><span style="display:flex;"><span>docker build -t swarm:latest .
+</span></span></code></pre></div><p>You can then commit and push this package up to dockerhub or github or what have you. <em>Just make sure you don&rsquo;t pull down the default &lsquo;swarm&rsquo; package, as it will make your ARM board question its sanity.</em></p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+        <span class="previous">&larr; <a href="http://simonwillshire.com/blog/series/exploring-rust/part-1/" rel="prev">Exploring Rust - Part 1 (Setup: Atom, Racer)</a></span>
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/adventures-in-scala-part-1/" rel="next">Adventures In Scala - Part 1: play-scala-intro</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

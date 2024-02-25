@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Now with 100% more percentages!">
+
+    <title>Camper Power Monitoring: Part 2</title>
+
+    <meta name="application-name" content="Simon Willshire"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../../../icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../../../icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../../../icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../../../icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../../../icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../../../icons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="../../../../css/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74342154-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="panel-header">
+        <a class="brand" href="../../../../">
+          Simon Willshire
+        </a>
+
+       <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+        <div class="panel-list container">
+          <a href="../../../../">Home</a>
+          <a href="../../../../blog">Blog</a>
+          <a href="https://siveetravels.com">Travel</a>
+          <a href="../../../../music">Music</a>
+          <a href="../../../../contact">Contact</a>
+          <a href="../../../../about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+  
+
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Camper Power Monitoring: Part 2</h1>
+      <div class="meta">
+        <span class="date">
+          <i class="fa fa-clock"></i>
+          Sep 14, 2021
+        </span>
+        &nbsp;
+        <div class="tags">
+        
+          <a href="../../../../tags/camper">Camper</a>&nbsp;
+        
+          <a href="../../../../tags/e-ink">E-ink</a>&nbsp;
+        
+          <a href="../../../../tags/rs-485">RS-485</a>&nbsp;
+        
+          <a href="../../../../tags/rs-232">RS-232</a>&nbsp;
+        
+          <a href="../../../../tags/off-grid">Off Grid</a>&nbsp;
+        
+          <a href="../../../../tags/raspberry-pi-pico">Raspberry Pi Pico</a>&nbsp;
+        
+        </div>
+      </div>
+    </div>
+    <div class="tags" style="text-align: center">
+      
+        This article is part of the series 
+        
+          <a href="../../../../series/camper-power-monitoring">Camper Power Monitoring</a></li>
+         
+       
+    </div>
+
+    <article>
+            <p><img src="https://i.imgur.com/SKgbyjd.jpg" alt="TLDR"></p>
+<h2 id="how-about-those-register-mappings">How about those Register Mappings?</h2>
+<p>With much frustration in reverse engineering the modbus register mappings (days of different charge states and spreadsheets&hellip;), thankfully a <a href="https://www.t6forum.com/threads/renogy-dcc50s-display.18572/page-8">small community</a> online has put forward a few registers! The registers did not turn out to be in the format I was expecting and required some bit shifting. So without further ado:</p>
+<p>Taken from the github repo @ 49ae2434656, <code>devices-lfp10s.h</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define LFP100S_REG_START           5042
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Offsets of addresses from LFP100S_REG_START
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LFP100S_REG_LOAD_A          0 </span><span style="color:#75715e">// 5042
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LFP100S_REG_VOLTAGE         1 </span><span style="color:#75715e">// 5043
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LFP100S_REG_CAPACITY_1      2 </span><span style="color:#75715e">// 5044
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LFP100S_REG_CAPACITY_2      3 </span><span style="color:#75715e">// 5045
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LFP100S_REG_MAX_CAPACITY_1  4 </span><span style="color:#75715e">// 5046
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LFP100S_REG_MAX_CAPACITY_2  5 </span><span style="color:#75715e">// 5047
+</span></span></span></code></pre></div><p>And the accompanying retreival from the unsigned int register array:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">battery_max_capacity</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> reg1 <span style="color:#f92672">=</span> lfp100s_registers[LFP100S_REG_MAX_CAPACITY_1];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> reg2 <span style="color:#f92672">=</span> lfp100s_registers[LFP100S_REG_MAX_CAPACITY_2];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> battery_max_capacity <span style="color:#f92672">=</span> ((reg1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">15</span>) <span style="color:#f92672">|</span> (reg2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> battery_max_capacity <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.002f</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">battery_capacity</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> reg1 <span style="color:#f92672">=</span> lfp100s_registers[LFP100S_REG_CAPACITY_1];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> reg2 <span style="color:#f92672">=</span> lfp100s_registers[LFP100S_REG_CAPACITY_2];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> capacity <span style="color:#f92672">=</span> ((reg1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">15</span>) <span style="color:#f92672">|</span> (reg2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> capacity <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.002f</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">battery_percentage</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> max <span style="color:#f92672">=</span> <span style="color:#a6e22e">battery_max_capacity</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> cap <span style="color:#f92672">=</span> <span style="color:#a6e22e">battery_capacity</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> percent <span style="color:#f92672">=</span> (cap <span style="color:#f92672">/</span> max) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100.0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> percent;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">battery_amperes</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> amps <span style="color:#f92672">=</span> lfp100s_registers[LFP100S_REG_LOAD_A];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(amps <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">61440</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">float</span>)amps <span style="color:#f92672">/</span> <span style="color:#ae81ff">100.0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">float</span>)(amps <span style="color:#f92672">-</span> <span style="color:#ae81ff">65535</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">100.0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">battery_voltage</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> v <span style="color:#f92672">=</span> lfp100s_registers[LFP100S_REG_VOLTAGE];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">float</span>)v <span style="color:#f92672">/</span> <span style="color:#ae81ff">10.f</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Thank you so much people from the T6 forum, saved me countless hours of monitor head-butting!</p>
+<h2 id="missing-features">Missing Features</h2>
+<p>Great, so with the above we now have capability to calculate state of charge and load / charge amperage! This means we can estimate time to full (100%) and empty (0%). These can be simply calculated by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> battery_load_watts <span style="color:#f92672">=</span> <span style="color:#a6e22e">battery_voltage</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">battery_amperes</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> hours_until <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">battery_capacity</span>() <span style="color:#f92672">/</span> battery_load_watts;
+</span></span></code></pre></div><p>In this case, our battery amperage can be a positive or negative value (if the battery is discharging or charging), so the hours until will also be signed. We can negate the <code>battery_load_watts</code> value when negative if we wish to have the hours until empty.</p>
+<h2 id="modbus-485-network-adjustments">Modbus 485 Network Adjustments</h2>
+<p>Not all has been smooth sailing however. In attempting to pull the battery registers, I was able to read values from the DCC50 (Battery to Battery charger), but as soon as I addressed / sent a message to the battery at node <code>0xf7</code>, I would receive a inconsistent and garbled reply. After some tinkering, some swapping of TTY boards and triple checking the wiring for the thousandth time, I suspected that both batteries must be transmitting a response at the same time, ie. operating on the same node identifier in the Modbus Network!</p>
+<p>So for the time being, I have severed the modbus connection to my second modbus battery, and using the balanced state of charge value as is (should be for the most part accurate if the BMS&rsquo; are doing their job!). However, the load value in my case is roughly half the value of total load on the system (With 2 batteries in parallel).</p>
+<h2 id="the-build-thus-far">The Build Thus Far</h2>
+<p><img src="https://i.imgur.com/NzIzG2X.jpg" alt="Internals"></p>
+<p>That rats nest of wiring houses all of the connectivity required to run the RS232, RS485 and SPI E-Ink screen. The third RJ-45 port was kept in on the TTY board, but it does not use the correct pinout for the Renogy products I have connected them to. This picture does not show the button which was added later (see final shot) in order to change screens (Overview, Solar, Altenator, and Statistics).</p>
+<p><img src="https://i.imgur.com/hSsZLnu.jpg" alt="Wall Wiring"></p>
+<p>Finally wiring up the unit, the lights are connected to the switches at the bottom of the housing, and the RJ communication cables that have been pulled through the wall.</p>
+<p><img src="https://i.imgur.com/mnZjO5X.jpg" alt="Complete"></p>
+<p>And there we have it, wired up and mounted in the wall!</p>
+<p>The completed codebase is located <a href="https://github.com/Tiggilyboo/vanny-hub">here</a>.
+Thanks for reading, any questions? Chuck them below!</p>
+
+
+      
+    </article>
+
+    
+      <div id="disqus_thread"></div>
+
+<script type="text/javascript">
+(function(){
+  if(window.location.hostname == "localhost") return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'simonwillshire';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsq);
+
+  var dsqc = document.createElement('script'); dsqc.id = 'dsq-count-scr'; dsqc.type = 'text/javascript'; dsqc.async = true;
+  dsqc.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0]).appendChild(dsqc);
+})();
+</script>
+<noscript>Please enable JavaScript to view comments.</noscript>
+
+    
+
+    <nav class="pagination-single">
+      
+      
+        <span class="next"><a href="http://simonwillshire.com/blog/series/camper-power-monitoring/part-1/" rel="next">Camper Power Monitoring: Part 1</a> &rarr;</span>
+      
+    </nav>
+  </main>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="social">
+  <a href="https://github.com/Tiggilyboo"><span class="fa fa-github" alt="GitHub"></span></a>
+  <a href="http://bitbucket.com/Tiggilyboo"><span class="fa fa-bitbucket" alt="Bitbucket"></span></a>
+  <a href="http://stackoverflow.com/users/3969264/tiggilyboo"><span class="fa fa-stack-overflow"></span></a>
+  <a href="https://soundcloud.com/tiggilyboo"><span class="fa fa-soundcloud"></span></a>
+</div>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+

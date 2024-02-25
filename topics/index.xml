@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Topics on Simon Willshire</title>
+    <link>http://simonwillshire.com/topics/</link>
+    <description>Recent content in Topics on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Sep 2021 09:28:00 +0100</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/topics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>http://simonwillshire.com/topics/blog/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/topics/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hardware</title>
+      <link>http://simonwillshire.com/topics/hardware/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/topics/hardware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Programming</title>
+      <link>http://simonwillshire.com/topics/programming/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/topics/programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Music</title>
+      <link>http://simonwillshire.com/topics/music/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/topics/music/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scala</title>
+      <link>http://simonwillshire.com/topics/scala/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/topics/scala/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Papers</title>
+      <link>http://simonwillshire.com/topics/papers/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/topics/papers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Artificial Intelligence</title>
+      <link>http://simonwillshire.com/topics/artificial-intelligence/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/topics/artificial-intelligence/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

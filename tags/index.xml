@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/</link>
+    <description>Recent content in Tags on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Sep 2021 09:28:00 +0100</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camper</title>
+      <link>http://simonwillshire.com/tags/camper/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/tags/camper/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>E-Ink</title>
+      <link>http://simonwillshire.com/tags/e-ink/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/tags/e-ink/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Off Grid</title>
+      <link>http://simonwillshire.com/tags/off-grid/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/tags/off-grid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raspberry Pi Pico</title>
+      <link>http://simonwillshire.com/tags/raspberry-pi-pico/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/tags/raspberry-pi-pico/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RS-232</title>
+      <link>http://simonwillshire.com/tags/rs-232/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/tags/rs-232/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RS-485</title>
+      <link>http://simonwillshire.com/tags/rs-485/</link>
+      <pubDate>Tue, 14 Sep 2021 09:28:00 +0100</pubDate>
+      <guid>http://simonwillshire.com/tags/rs-485/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DIY</title>
+      <link>http://simonwillshire.com/tags/diy/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Keyboards</title>
+      <link>http://simonwillshire.com/tags/keyboards/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/keyboards/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Planck</title>
+      <link>http://simonwillshire.com/tags/planck/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/planck/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ARM</title>
+      <link>http://simonwillshire.com/tags/arm/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/arm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C</title>
+      <link>http://simonwillshire.com/tags/c/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/c/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kernel</title>
+      <link>http://simonwillshire.com/tags/kernel/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/kernel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>http://simonwillshire.com/tags/linux/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Matrix</title>
+      <link>http://simonwillshire.com/tags/matrix/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/matrix/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Caddy</title>
+      <link>http://simonwillshire.com/tags/caddy/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/caddy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>http://simonwillshire.com/tags/docker/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GKE</title>
+      <link>http://simonwillshire.com/tags/gke/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/gke/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>http://simonwillshire.com/tags/kubernetes/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Programming</title>
+      <link>http://simonwillshire.com/tags/programming/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reverse Proxy</title>
+      <link>http://simonwillshire.com/tags/reverse-proxy/</link>
+      <pubDate>Tue, 27 Feb 2018 16:42:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/reverse-proxy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Android</title>
+      <link>http://simonwillshire.com/tags/android/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/android/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cordova</title>
+      <link>http://simonwillshire.com/tags/cordova/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/cordova/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IOS</title>
+      <link>http://simonwillshire.com/tags/ios/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>http://simonwillshire.com/tags/java/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NativeScript</title>
+      <link>http://simonwillshire.com/tags/nativescript/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/nativescript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NodeJS</title>
+      <link>http://simonwillshire.com/tags/nodejs/</link>
+      <pubDate>Tue, 03 Oct 2017 13:39:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Debian</title>
+      <link>http://simonwillshire.com/tags/debian/</link>
+      <pubDate>Wed, 06 Sep 2017 12:08:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/debian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Acoustic</title>
+      <link>http://simonwillshire.com/tags/acoustic/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/acoustic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Baritone</title>
+      <link>http://simonwillshire.com/tags/baritone/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/baritone/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Guitar</title>
+      <link>http://simonwillshire.com/tags/guitar/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/guitar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Improvisation</title>
+      <link>http://simonwillshire.com/tags/improvisation/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/improvisation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Original</title>
+      <link>http://simonwillshire.com/tags/original/</link>
+      <pubDate>Sun, 04 Jun 2017 17:03:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/original/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>API</title>
+      <link>http://simonwillshire.com/tags/api/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go</title>
+      <link>http://simonwillshire.com/tags/go/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Parser</title>
+      <link>http://simonwillshire.com/tags/parser/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/parser/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>WAPIQ</title>
+      <link>http://simonwillshire.com/tags/wapiq/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/tags/wapiq/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AngularJS 2</title>
+      <link>http://simonwillshire.com/tags/angularjs-2/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/angularjs-2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FCM</title>
+      <link>http://simonwillshire.com/tags/fcm/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/fcm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ionic Framework</title>
+      <link>http://simonwillshire.com/tags/ionic-framework/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/ionic-framework/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mobile</title>
+      <link>http://simonwillshire.com/tags/mobile/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/mobile/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Notifications</title>
+      <link>http://simonwillshire.com/tags/notifications/</link>
+      <pubDate>Mon, 10 Oct 2016 05:55:00 -1200</pubDate>
+      <guid>http://simonwillshire.com/tags/notifications/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nom</title>
+      <link>http://simonwillshire.com/tags/nom/</link>
+      <pubDate>Tue, 23 Aug 2016 22:53:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/nom/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rust</title>
+      <link>http://simonwillshire.com/tags/rust/</link>
+      <pubDate>Tue, 23 Aug 2016 22:53:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/rust/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vulkan</title>
+      <link>http://simonwillshire.com/tags/vulkan/</link>
+      <pubDate>Sun, 24 Jul 2016 14:54:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/tags/vulkan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Three Fingers</title>
+      <link>http://simonwillshire.com/tags/three-fingers/</link>
+      <pubDate>Sun, 19 Jun 2016 15:25:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/three-fingers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Audio Interface</title>
+      <link>http://simonwillshire.com/tags/audio-interface/</link>
+      <pubDate>Sun, 29 May 2016 21:51:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/audio-interface/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pickups</title>
+      <link>http://simonwillshire.com/tags/pickups/</link>
+      <pubDate>Sun, 29 May 2016 21:51:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/pickups/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Preamps</title>
+      <link>http://simonwillshire.com/tags/preamps/</link>
+      <pubDate>Sun, 29 May 2016 21:51:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/preamps/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Compiler</title>
+      <link>http://simonwillshire.com/tags/compiler/</link>
+      <pubDate>Sat, 14 May 2016 13:06:00 -0400</pubDate>
+      <guid>http://simonwillshire.com/tags/compiler/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker Swarm</title>
+      <link>http://simonwillshire.com/tags/docker-swarm/</link>
+      <pubDate>Fri, 01 Apr 2016 18:16:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/docker-swarm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Golang</title>
+      <link>http://simonwillshire.com/tags/golang/</link>
+      <pubDate>Fri, 01 Apr 2016 18:16:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Play</title>
+      <link>http://simonwillshire.com/tags/play/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/tags/play/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PostgreSQL</title>
+      <link>http://simonwillshire.com/tags/postgresql/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scala</title>
+      <link>http://simonwillshire.com/tags/scala/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/tags/scala/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Slick</title>
+      <link>http://simonwillshire.com/tags/slick/</link>
+      <pubDate>Thu, 31 Mar 2016 15:04:15 -0400</pubDate>
+      <guid>http://simonwillshire.com/tags/slick/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bash</title>
+      <link>http://simonwillshire.com/tags/bash/</link>
+      <pubDate>Thu, 31 Mar 2016 11:35:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/bash/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Snippet</title>
+      <link>http://simonwillshire.com/tags/snippet/</link>
+      <pubDate>Thu, 31 Mar 2016 11:35:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/snippet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Thwo Fingers</title>
+      <link>http://simonwillshire.com/tags/thwo-fingers/</link>
+      <pubDate>Mon, 29 Feb 2016 20:00:00 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/thwo-fingers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C Sharp</title>
+      <link>http://simonwillshire.com/tags/c-sharp/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/c-sharp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Complexity</title>
+      <link>http://simonwillshire.com/tags/complexity/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/complexity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DFS</title>
+      <link>http://simonwillshire.com/tags/dfs/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/dfs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ETSP</title>
+      <link>http://simonwillshire.com/tags/etsp/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/etsp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Knuth</title>
+      <link>http://simonwillshire.com/tags/knuth/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/knuth/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MST</title>
+      <link>http://simonwillshire.com/tags/mst/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/mst/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prim</title>
+      <link>http://simonwillshire.com/tags/prim/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/prim/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://simonwillshire.com/tags/python/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Recursion</title>
+      <link>http://simonwillshire.com/tags/recursion/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/recursion/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Research</title>
+      <link>http://simonwillshire.com/tags/research/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/research/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>University</title>
+      <link>http://simonwillshire.com/tags/university/</link>
+      <pubDate>Sat, 27 Feb 2016 15:59:52 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/university/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Beowolf</title>
+      <link>http://simonwillshire.com/tags/beowolf/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/beowolf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Big.LITTLE</title>
+      <link>http://simonwillshire.com/tags/big.little/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/big.little/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cluster</title>
+      <link>http://simonwillshire.com/tags/cluster/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/cluster/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MPICH3</title>
+      <link>http://simonwillshire.com/tags/mpich3/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/mpich3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Multiprocessor</title>
+      <link>http://simonwillshire.com/tags/multiprocessor/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/multiprocessor/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NFS</title>
+      <link>http://simonwillshire.com/tags/nfs/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/nfs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Odroid</title>
+      <link>http://simonwillshire.com/tags/odroid/</link>
+      <pubDate>Sat, 27 Feb 2016 15:47:17 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/odroid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MIMD</title>
+      <link>http://simonwillshire.com/tags/mimd/</link>
+      <pubDate>Sat, 27 Feb 2016 15:37:18 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/mimd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Parallela</title>
+      <link>http://simonwillshire.com/tags/parallela/</link>
+      <pubDate>Sat, 27 Feb 2016 15:37:18 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/parallela/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Parallelism</title>
+      <link>http://simonwillshire.com/tags/parallelism/</link>
+      <pubDate>Sat, 27 Feb 2016 15:37:18 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/parallelism/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI</title>
+      <link>http://simonwillshire.com/tags/ai/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://simonwillshire.com/tags/c&#43;&#43;/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Esoteric</title>
+      <link>http://simonwillshire.com/tags/esoteric/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/esoteric/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Genetic</title>
+      <link>http://simonwillshire.com/tags/genetic/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/genetic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LGP</title>
+      <link>http://simonwillshire.com/tags/lgp/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/lgp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <link>http://simonwillshire.com/tags/optimization/</link>
+      <pubDate>Sat, 27 Feb 2016 14:22:05 -0500</pubDate>
+      <guid>http://simonwillshire.com/tags/optimization/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

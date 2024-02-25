@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on Simon Willshire</title>
+    <link>http://simonwillshire.com/topics/hardware/</link>
+    <description>Recent content in Hardware on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Mar 2020 12:37:00 +1300</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/topics/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Handwired Keyboard Project: Part 4</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</link>
+      <pubDate>Tue, 24 Mar 2020 12:37:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-4/</guid>
+      <description>Hello everybody, a much delayed posting of this series (I completed the project January 12th or so&amp;hellip;), I&amp;rsquo;ve been travelling around the world at exactly the wrong time, but I thought since I&amp;rsquo;ve got the time to finally post the final part to this series, let&amp;rsquo;s get started!&#xA;The Case I was able to grab a friends dremel to modify the existing Aluminium Hi-Pro Planck case. Needed to widen the port area in order to fit the HDMI port, audio, and USB-C cabling in.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 3</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</link>
+      <pubDate>Thu, 12 Dec 2019 17:36:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-3/</guid>
+      <description>Intro Great it&amp;rsquo;s been 3 months, where the heck is my finished keyboard? Let&amp;rsquo;s get up to speed - I am curently typing this article with the new keyboard, without a case and a wonky ESC switch, but lets start at the beginning, from finishing Part 2:&#xA;We had a &amp;ldquo;working&amp;rdquo; interrupt firing and internal key events being issued to the SBC. We did not have external input mode via USB HID.</description>
+    </item>
+    <item>
+      <title>Handwired Keyboard Project: Part 2</title>
+      <link>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-2/</link>
+      <pubDate>Fri, 13 Sep 2019 21:49:00 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/series/handwired-keyboard-project/part-2/</guid>
+      <description>Intro As a quick refresher from the first part in the series, I&amp;rsquo;m making a handwired keyboard which uses an altogether rediculous chinese knockoff 6 core monster SBC (The RK3399). Better yet, there are not enough GPIOs available on the board to handle the input matrix (12x4). Oh, and the case I want to use (from my current keyboard does not have enough vertical headroom to fit it, so I have to manually strip the taller components by hand so it has enough clearance.</description>
+    </item>
+  </channel>
+</rss>

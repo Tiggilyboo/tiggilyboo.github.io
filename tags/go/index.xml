@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Simon Willshire</title>
+    <link>http://simonwillshire.com/tags/go/</link>
+    <description>Recent content in Go on Simon Willshire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Feb 2017 22:48:15 +1300</lastBuildDate>
+    <atom:link href="http://simonwillshire.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WAPIQ: Web API Query Language</title>
+      <link>http://simonwillshire.com/blog/wapiq/</link>
+      <pubDate>Sat, 25 Feb 2017 22:48:15 +1300</pubDate>
+      <guid>http://simonwillshire.com/blog/wapiq/</guid>
+      <description>Open Sourced On Github Introduction After working on several project involving frequent web API interactions, including: response parsing and request assembling, you could say I&amp;rsquo;ve had enough of it&amp;hellip; So I wrote a library/query language in Golang which attempts to shorten the amount of time to map arbitrary JSON responses and setting up web API request behaviours.&#xA;What does it look like? I went for something of a hybrid between a query language like SQL, and that of a configuration or declarative format like JSON.</description>
+    </item>
+  </channel>
+</rss>
